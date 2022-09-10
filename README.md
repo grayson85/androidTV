@@ -26,12 +26,16 @@ app/src/main/res/layout/activity_setting.xml
 
 # 修复内容
 i) https源无法显示图片
+
 ii) 影片数据加载错误
+
 iii) 移除release版需要登入才能播放影片
+
 iv) 添加公告
 
 # 未来修改
 i) 影片多源显示
+
 ii) 影片集数分类
 
 ![image](https://user-images.githubusercontent.com/37401242/189471881-e38ac0ac-e2ee-4f3e-8262-9da58fa970bc.png)
