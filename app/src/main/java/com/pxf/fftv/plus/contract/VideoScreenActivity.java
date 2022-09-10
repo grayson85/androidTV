@@ -152,6 +152,7 @@ public class VideoScreenActivity extends AppCompatActivity implements VideoAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_screen);
+
         ButterKnife.bind(this);
 
         initView();

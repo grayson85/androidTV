@@ -110,6 +110,9 @@ public class VideoListActivity extends AppCompatActivity implements VideoAdapter
     @BindView(R.id.video_list_refresh)
     SmartRefreshLayout video_list_refresh;
 
+    @BindView(R.id.top_bar_menu_right_note)
+    TextView top_bar_menu_right_note;
+
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
     private TextView currentFocusTitle;
@@ -177,7 +180,7 @@ public class VideoListActivity extends AppCompatActivity implements VideoAdapter
 
     private void initView() {
         Ui.configTopBar(this);
-
+        initGongGao();
         titleList.add(video_list_title_0);
         titleList.add(video_list_title_1);
         titleList.add(video_list_title_2);
@@ -211,6 +214,11 @@ public class VideoListActivity extends AppCompatActivity implements VideoAdapter
         videoList.add(videoList_13);
         videoList.add(videoList_14);
         videoList.add(videoList_15);
+    }
+
+    private void initGongGao(){
+        top_bar_menu_right_note.setSingleLine(true);
+        top_bar_menu_right_note.setSelected(true);
     }
 
     private void configTitleText(TextView textView, @Nullable FocusAction focusAction) {

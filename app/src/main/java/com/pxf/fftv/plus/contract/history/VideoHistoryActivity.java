@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.pxf.fftv.plus.Const;
 import com.pxf.fftv.plus.FFTVApplication;
@@ -32,6 +33,9 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
     @BindView(R.id.video_history_recycler_view)
     RecyclerView video_history_recycler_view;
 
+    @BindView(R.id.top_bar_menu_right_note)
+    TextView top_bar_menu_right_note;
+
     private LinkedList<VideoHistory> historyList;
 
     @Override
@@ -39,7 +43,7 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_history);
         ButterKnife.bind(this);
-
+        initGongGao();
         Ui.configTopBar(this, "选中视频时菜单键可删除");
     }
 
@@ -47,7 +51,7 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-
+        initGongGao();
         historyList = (LinkedList<VideoHistory>) InternalFileSaveUtil.getInstance(this).get("video_history");
         video_history_recycler_view.setLayoutManager(new GridLayoutManager(this, 5) {
             @Override
@@ -59,6 +63,7 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
             VideoHistoryAdapter adapter = new VideoHistoryAdapter(this, historyList, this);
             video_history_recycler_view.setAdapter(adapter);
         }
+
     }
 
     @Override
@@ -79,5 +84,9 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
         InternalFileSaveUtil.getInstance(this).put("video_history", historyList);
         VideoHistoryAdapter adapter = new VideoHistoryAdapter(this, historyList, this);
         video_history_recycler_view.setAdapter(adapter);
+    }
+
+    private void initGongGao(){
+        top_bar_menu_right_note.setVisibility(TextView.GONE);
     }
 }
