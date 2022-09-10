@@ -1,0 +1,435 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppBtnTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorFocus</item>
+        <item name="colorPrimaryDark">@color/colorFocus</item>
+        <item name="colorAccent">@color/colorFocus</item>
+    </style>
+
+    <style name="AppSearchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="AppTbsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">#BDBDBD</item>
+        <item name="colorControlActivated">@color/colorFocus</item>
+    </style>
+
+    <style name="LauncherTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/pic_launcher</item>
+    </style>
+
+    <style name="CustomDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="TransparentActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否悬浮在activity上 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 无标题 -->
+        <item name="android:windowBackground">@color/colorHalfTransparent</item><!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item><!-- 模糊 -->
+        <item name="android:windowContentOverlay">@null</item><!-- 对话框是否有遮盖 -->
+        <item name="android:colorBackgroundCacheHint">@null</item><!-- 背景缓存颜色 -->
+    </style>
+
+    <style name="view_fill">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="home_title_text">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/x14</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginRight">@dimen/x16</item>
+        <item name="android:paddingLeft">@dimen/x6</item>
+        <item name="android:paddingRight">@dimen/x6</item>
+        <item name="android:paddingTop">@dimen/x1</item>
+        <item name="android:paddingBottom">@dimen/x1</item>
+    </style>
+
+    <style name="video_title_root">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/x8</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="video_title_image">
+        <item name="android:src">@drawable/video_title_icon</item>
+        <item name="android:layout_width">@dimen/x24</item>
+        <item name="android:layout_height">@dimen/x24</item>
+    </style>
+
+    <style name="video_title_text">
+        <item name="android:text">新片上架</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/x16</item>
+        <item name="android:layout_marginLeft">@dimen/x16</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="video_card_root">
+        <item name="android:layout_marginBottom">@dimen/x12</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="video_item_root">
+        <item name="android:focusable">false</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/x136</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="video_type_item_root">
+        <item name="android:focusable">false</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="video_type_item_text">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/x4</item>
+        <item name="android:layout_marginBottom">@dimen/x4</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:paddingTop">@dimen/x11</item>
+        <item name="android:paddingBottom">@dimen/x11</item>
+        <item name="android:text">全部剧集</item>
+        <item name="android:textSize">@dimen/x11</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">@dimen/video_item_width</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="video_item_card_root">
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_width">@dimen/video_item_width</item>
+        <item name="android:layout_height">@dimen/x118</item>
+        <item name="android:background">@drawable/bg_video_card</item>
+    </style>
+
+    <style name="video_item_card_image">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:background">@color/colorLoading</item>
+        <item name="android:layout_width">@dimen/video_item_width</item>
+        <item name="android:layout_height">@dimen/x98</item>
+    </style>
+
+    <style name="video_item_card_text">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:text">资源加载中...</item>
+        <item name="android:textSize">@dimen/x8</item>
+        <item name="android:textColor">@color/colorVideoCardTextNormal</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_width">@dimen/video_item_width</item>
+        <item name="android:layout_height">@dimen/x20</item>
+        <item name="android:paddingLeft">@dimen/x4</item>
+        <item name="android:paddingRight">@dimen/x4</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
+    <style name="video_item_card_rank">
+        <item name="android:layout_width">@dimen/x20</item>
+        <item name="android:layout_height">@dimen/x20</item>
+    </style>
+
+    <style name="video_item_card_play_icon">
+        <item name="android:src">@drawable/play_icon</item>
+        <item name="android:layout_width">@dimen/x32</item>
+        <item name="android:layout_height">@dimen/x32</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginBottom">@dimen/x4</item>
+        <item name="android:scaleX">0</item>
+        <item name="android:scaleY">0</item>
+    </style>
+
+    <style name="video_item_card_tag">
+        <item name="android:layout_marginTop">@dimen/x2</item>
+        <item name="android:layout_marginRight">@dimen/x2</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:padding">@dimen/x1</item>
+        <item name="android:background">@drawable/bg_video_card_right_top_tag</item>
+        <item name="android:text">VIP免费</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/x4</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="common_menu_root">
+        <item name="android:layout_marginTop">@dimen/video_detail_content_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/video_detail_content_vertical_margin</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/bg_common_menu_normal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/x8</item>
+        <item name="android:paddingBottom">@dimen/x4</item>
+        <item name="android:paddingTop">@dimen/x4</item>
+        <item name="android:paddingRight">@dimen/x8</item>
+    </style>
+    
+    <style name="top_bar_menu" parent="@style/common_menu_root">
+        <item name="android:layout_marginRight">@dimen/x16</item>
+    </style>
+
+    <style name="common_menu_icon">
+        <item name="android:layout_width">@dimen/x8</item>
+        <item name="android:layout_height">@dimen/x8</item>
+    </style>
+
+    <style name="common_menu_text">
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:textSize">@dimen/x8</item>
+        <item name="android:layout_marginLeft">@dimen/x4</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="app_title_text">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorTextNormal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="video_list_title">
+        <item name="android:textSize">@dimen/x14</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/x10</item>
+    </style>
+
+    <style name="video_list_sub_title">
+        <item name="android:layout_marginBottom">@dimen/x12</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textSize">@dimen/x10</item>
+        <item name="android:textColor">@color/colorVideoListTitleNormal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/x6</item>
+        <item name="android:paddingRight">@dimen/x6</item>
+        <item name="android:paddingTop">@dimen/x2</item>
+        <item name="android:paddingBottom">@dimen/x2</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="personal_menu_item_root">
+        <item name="android:layout_marginTop">@dimen/x12</item>
+        <item name="android:layout_marginBottom">@dimen/x12</item>
+        <item name="android:layout_marginLeft">@dimen/x16</item>
+        <item name="android:paddingTop">@dimen/x12</item>
+        <item name="android:paddingBottom">@dimen/x12</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/setting_menu_item</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_width">@dimen/x80</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="personal_menu_item_icon">
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_width">@dimen/x32</item>
+        <item name="android:layout_height">@dimen/x32</item>
+    </style>
+
+    <style name="personal_menu_item_text">
+        <item name="android:textColor">@color/colorPersonalNormal</item>
+        <item name="android:textSize">@dimen/x12</item>
+        <item name="android:layout_marginTop">@dimen/x12</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="setting_item_root">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/x12</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="setting_item_title">
+        <item name="android:textColor">@color/colorPersonalNormal</item>
+        <item name="android:textSize">@dimen/x14</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/x12</item>
+    </style>
+
+    <style name="setting_item_selection">
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">@dimen/x4</item>
+        <item name="android:layout_marginBottom">@dimen/x4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/x4</item>
+        <item name="android:layout_marginRight">@dimen/x4</item>
+        <item name="android:background">@drawable/setting_menu_item_2</item>
+        <item name="android:textColor">@color/colorPersonalNormal</item>
+        <item name="android:textSize">@dimen/x10</item>
+        <item name="android:layout_width">@dimen/x72</item>
+        <item name="android:layout_height">@dimen/x20</item>
+    </style>
+
+    <style name="setting_text">
+        <item name="android:layout_marginTop">@dimen/x12</item>
+        <item name="android:layout_marginBottom">@dimen/x12</item>
+        <item name="android:layout_marginLeft">@dimen/x24</item>
+        <item name="android:layout_marginRight">@dimen/x24</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingLeft">@dimen/x16</item>
+        <item name="android:paddingRight">@dimen/x16</item>
+        <item name="android:paddingTop">@dimen/x8</item>
+        <item name="android:paddingBottom">@dimen/x8</item>
+        <item name="android:layout_width">@dimen/x160</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/x12</item>
+    </style>
+
+    <style name="setting_input" parent="@style/setting_text">
+        <item name="android:textColorHint">@color/colorPersonalNormal</item>
+        <item name="android:textColor">@color/colorPersonalCurrent</item>
+        <item name="android:background">@drawable/bg_input</item>
+    </style>
+
+    <style name="setting_btn" parent="@style/setting_text">
+        <item name="android:theme">@style/AppBtnTheme</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/setting_menu_item</item>
+    </style>
+
+    <style name="video_ad_text">
+        <item name="android:layout_margin">@dimen/x24</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="search_item_text">
+        <item name="android:layout_marginTop">@dimen/x4</item>
+        <item name="android:textSize">@dimen/x10</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_bottom_text">
+        <item name="android:textColor">@color/vipTextColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_item_root">
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_margin">@dimen/x6</item>
+        <item name="android:padding">@dimen/x12</item>
+        <item name="android:background">@drawable/bg_vip_root_item</item>
+        <item name="android:layout_width">@dimen/x240</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_item_title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/x16</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_item_message">
+        <item name="android:layout_marginTop">@dimen/x8</item>
+        <item name="android:textSize">@dimen/x10</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_item_price">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginTop">@dimen/x8</item>
+        <item name="android:textSize">@dimen/x14</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_pay_item_root">
+        <item name="android:layout_margin">@dimen/x24</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_pay_item_title">
+        <item name="android:layout_marginTop">@dimen/x8</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">@dimen/x12</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="vip_pay_image_qrcode">
+        <item name="android:layout_width">@dimen/vip_pay_qrcode_size</item>
+        <item name="android:layout_height">@dimen/vip_pay_qrcode_size</item>
+    </style>
+</resources>

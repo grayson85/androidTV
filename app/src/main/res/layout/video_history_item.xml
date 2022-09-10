@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/video_item_root"
+    android:layout_width="@dimen/x96"
+    android:layout_height="@dimen/x136">
+
+    <RelativeLayout
+        android:id="@+id/video_history_card_root"
+        style="@style/video_item_card_root">
+
+        <ImageView
+            android:id="@+id/video_history_card_image"
+            style="@style/video_item_card_image" />
+
+        <TextView
+            android:id="@+id/video_history_card_text"
+            style="@style/video_item_card_text" />
+
+        <ImageView
+            style="@style/video_item_card_rank"
+            android:src="@drawable/ranking_1"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/video_item_card_tag"
+            android:visibility="gone" />
+
+        <ImageView style="@style/video_item_card_play_icon" />
+
+        <TextView
+            android:id="@+id/video_history_card_progress"
+            android:paddingLeft="@dimen/x2"
+            android:paddingBottom="@dimen/x4"
+            android:gravity="left|bottom"
+            android:textSize="@dimen/x6"
+            android:textColor="#E9E9E9"
+            android:background="@drawable/video_history_progress_bg"
+            android:layout_above="@id/video_history_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x20" />
+    </RelativeLayout>
+</RelativeLayout>

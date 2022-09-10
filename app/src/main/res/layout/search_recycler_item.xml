@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@drawable/search_bg_item"
+    android:focusable="true"
+    android:layout_marginTop="@dimen/x12"
+    android:padding="@dimen/x8"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/search_item_iv_pic"
+        android:layout_width="@dimen/x96"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/search_item_tv_name"
+            android:textSize="@dimen/x16"
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/search_item_tv_director"
+            style="@style/search_item_text" />
+
+        <TextView
+            android:id="@+id/search_item_tv_actor"
+            style="@style/search_item_text" />
+
+        <TextView
+            android:id="@+id/search_item_tv_area"
+            style="@style/search_item_text" />
+
+        <TextView
+            android:id="@+id/search_item_tv_year"
+            style="@style/search_item_text" />
+
+        <TextView
+            android:maxLines="4"
+            android:ellipsize="end"
+            android:id="@+id/search_item_tv_content"
+            style="@style/search_item_text" />
+
+    </LinearLayout>
+</LinearLayout>

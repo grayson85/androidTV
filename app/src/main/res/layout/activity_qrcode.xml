@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/qrcode_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contract.QrCodeActivity">
+
+    <RelativeLayout
+        android:padding="@dimen/x12"
+        style="@style/vip_pay_item_root"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_marginBottom="@dimen/x6"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ad_tv_title"
+            style="@style/vip_pay_item_title" />
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ad_iv_qrcode"
+            style="@style/vip_pay_image_qrcode"
+            android:layout_below="@id/ad_tv_title" />
+    </RelativeLayout>
+
+</RelativeLayout>

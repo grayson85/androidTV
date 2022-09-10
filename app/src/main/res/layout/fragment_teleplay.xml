@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pxf.fftv.plus.custom.VerticalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".contract.video.MovieFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/video_title_root">
+
+            <ImageView style="@style/video_title_image" />
+
+            <TextView style="@style/video_title_text" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_card_root">
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_1"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_1" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_2"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_2" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_3"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_3" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_4"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_4" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_5"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_5" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_6"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_6" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x12">
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="大陆"
+                    android:id="@+id/video_type_1"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_1" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="香港"
+                    android:id="@+id/video_type_2"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_2" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="日剧"
+                    android:id="@+id/video_type_3"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_3" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="韩剧"
+                    android:id="@+id/video_type_4"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_4" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="台湾"
+                    android:id="@+id/video_type_5"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_5" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_type_item_root">
+
+                <TextView
+                    android:text="欧美"
+                    android:id="@+id/video_type_6"
+                    style="@style/video_type_item_text"
+                    android:background="@drawable/bg_type_6" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/layout_ad"/>
+
+        <LinearLayout style="@style/video_title_root">
+
+            <ImageView style="@style/video_title_image" />
+
+            <TextView
+                android:text="大陆剧"
+                style="@style/video_title_text" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_card_root">
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_7"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_1" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_8"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_2" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_9"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_3" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_10"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_4" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_11"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_5" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_12"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_6" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_title_root">
+
+            <ImageView style="@style/video_title_image" />
+
+            <TextView
+                android:text="港剧"
+                style="@style/video_title_text" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_card_root">
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_13"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_1" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_14"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_2" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_15"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_3" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_16"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_4" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_17"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_5" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_18"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_6" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_title_root">
+
+            <ImageView style="@style/video_title_image" />
+
+            <TextView
+                android:text="韩剧"
+                style="@style/video_title_text" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/video_card_root">
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_19"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_1" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_20"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_2" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_21"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_3" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_22"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_4" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_23"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_5" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/video_item_root">
+
+                <RelativeLayout
+                    android:id="@+id/video_card_root_24"
+                    style="@style/video_item_card_root">
+
+                    <ImageView style="@style/video_item_card_image" />
+
+                    <TextView style="@style/video_item_card_text" />
+
+                    <ImageView
+                        style="@style/video_item_card_rank"
+                        android:src="@drawable/ranking_6" />
+
+                    <TextView style="@style/video_item_card_tag" />
+
+                    <ImageView style="@style/video_item_card_play_icon" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.pxf.fftv.plus.custom.VerticalScrollView>

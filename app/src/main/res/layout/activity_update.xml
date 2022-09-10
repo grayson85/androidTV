@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/update_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".contract.UpdateActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x112"
+            android:layout_height="@dimen/x112"
+            android:src="@drawable/ic_update_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x24"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/update_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本升级至 4.0"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/update_tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x12"
+                android:lineSpacingMultiplier="1.5"
+                android:text="1. 优化整体布局和效果\n2. 优化资源加载速度\n3. 添加视频反馈功能\n4. 更多惊喜，邀您升级体验"
+                android:textColor="#D6D6D6"
+                android:textSize="@dimen/x12" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x12">
+
+                <TextView
+                    android:id="@+id/update_tv_now_update"
+                    style="@style/setting_item_selection"
+                    android:text="现在升级" />
+
+                <TextView
+                    android:id="@+id/update_tv_now_update_manual"
+                    style="@style/setting_item_selection"
+                    android:layout_marginLeft="@dimen/x12"
+                    android:text="手动更新" />
+
+                <TextView
+                    android:id="@+id/update_tv_not_update"
+                    style="@style/setting_item_selection"
+                    android:layout_marginLeft="@dimen/x12"
+                    android:text="暂不更新" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_root_download_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x24"
+        android:layout_marginRight="@dimen/x24"
+        android:layout_marginBottom="@dimen/x24"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/update_tv_download_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在下载更新..."
+            android:textColor="#4DB2F8"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/update_seek_bar_download_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x6"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:max="100"
+            android:maxHeight="@dimen/x4"
+            android:minHeight="@dimen/x4"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progressDrawable="@drawable/update_seekbar_progress"
+            android:thumb="@null" />
+
+        <TextView
+            android:id="@+id/update_tv_download_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/x4"
+            android:text="0%"
+            android:textColor="#D6D6D6" />
+    </LinearLayout>
+</RelativeLayout>

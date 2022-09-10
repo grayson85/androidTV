@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/x24"
+    android:background="@drawable/bg_default">
+
+    <include layout="@layout/top_bar" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x30">
+
+        <TextView
+            android:layout_marginLeft="@dimen/x24"
+            android:id="@+id/home_tv_person"
+            style="@style/home_title_text"
+            android:text="我的" />
+
+        <TextView
+            android:id="@+id/home_tv_title_0"
+            style="@style/home_title_text"
+            android:text="标题" />
+
+        <TextView
+            android:id="@+id/home_tv_title_1"
+            style="@style/home_title_text"
+            android:text="标题" />
+
+        <TextView
+            android:id="@+id/home_tv_title_2"
+            style="@style/home_title_text"
+            android:text="标题" />
+
+        <TextView
+            android:id="@+id/home_tv_title_3"
+            style="@style/home_title_text"
+            android:text="标题" />
+
+        <TextView
+            android:id="@+id/home_tv_title_4"
+            style="@style/home_title_text"
+            android:text="标题" />
+
+        <TextView
+            android:id="@+id/home_tv_title_5"
+            style="@style/home_title_text"
+            android:text="标题" />
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_marginLeft="@dimen/x24"
+        android:layout_marginRight="@dimen/x24"
+        android:id="@+id/home_view_pager"
+        android:layout_marginTop="@dimen/x16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.viewpager.widget.ViewPager>
+</LinearLayout>

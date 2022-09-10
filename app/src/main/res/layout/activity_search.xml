@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_default"
+    android:padding="@dimen/x24">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x56"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/search_et_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg_input"
+            android:focusable="true"
+            android:paddingLeft="@dimen/x16"
+            android:paddingTop="@dimen/x4"
+            android:paddingRight="@dimen/x16"
+            android:paddingBottom="@dimen/x4"
+            android:singleLine="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x20" />
+
+        <ImageView
+            android:id="@+id/search_iv_search"
+            android:layout_width="@dimen/x36"
+            android:layout_height="@dimen/x36"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_marginRight="@dimen/x16"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:src="@drawable/search_ic_search_default" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recycler_view_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/x16" />
+
+    <TextView
+        android:id="@+id/search_tv_no_result"
+        android:layout_marginTop="@dimen/x16"
+        android:text="搜索不到结果"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

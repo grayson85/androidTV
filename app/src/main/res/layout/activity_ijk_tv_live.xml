@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SurfaceView
+        android:id="@+id/surface_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/x64"
+        android:layout_height="@dimen/x64"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:id="@+id/tv_live_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#BB000000"
+        android:orientation="horizontal"
+        android:padding="@dimen/x24">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tv_live_recycler_view_title"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tv_live_recycler_view_sub_title"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x12" />
+    </LinearLayout>
+
+</RelativeLayout>

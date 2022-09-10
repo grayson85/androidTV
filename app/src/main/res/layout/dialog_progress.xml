@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#99000000"
+    android:focusable="false"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/x20">
+
+    <ImageView
+        android:id="@+id/dialog_progress_icon"
+        android:layout_width="@dimen/x30"
+        android:layout_height="@dimen/x30"
+        android:focusable="false"
+        android:src="@drawable/video_forward" />
+
+    <TextView
+        android:id="@+id/dialog_progress_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x12"
+        android:focusable="false"
+        android:text="快进 32 秒"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x12" />
+</LinearLayout>

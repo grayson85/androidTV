@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorTheme</color>
+    <color name="colorPrimaryDark">@color/colorThemeDark</color>
+    <color name="colorAccent">@color/colorThemeDark</color>
+
+    <color name="colorHalfTransparent">#AA000000</color>
+    <color name="colorTheme">#293149</color>
+    <color name="colorThemeDark">#0D0D0F</color>
+
+    <color name="colorLoading">#232D4B</color>
+    <color name="colorText">#222222</color>
+
+    <color name="colorTextNormal">#8F9094</color>
+    <color name="colorTextFocus">@color/colorWhite</color>
+    <color name="colorTextSelection">#299AEA</color>
+    <color name="colorVipTextNormal">#F1B770</color>
+    <color name="colorVipTextFocus">#8E4B00</color>
+    <color name="colorTabTextCurrentButNoFocus">#299AEA</color>
+    <color name="colorFocus">#299AEA</color>
+    <color name="colorFocusShallow">#19CFCA</color>
+
+    <color name="colorVideoCardTextFocus">#222222</color>
+    <color name="colorVideoCardTextNormal">#B2B6BE</color>
+
+    <color name="colorVideoListTitleFocus">@color/colorWhite</color>
+    <color name="colorVideoListTitleNormal">#D6D6D6</color>
+
+    <color name="colorPersonalFocus">@color/colorWhite</color>
+    <color name="colorPersonalNormal">#D6D6D6</color>
+    <color name="colorPersonalCurrent">#149CFD</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    
+    <color name="colorVideoCardFocus">#D7DCF5</color>
+
+    <color name="accountVipColorFocus">@color/colorVipTextFocus</color>
+    <color name="accountVipColorNormal">#CFCFCF</color>
+
+    <color name="vipTextColor">#BB9466</color>
+</resources>

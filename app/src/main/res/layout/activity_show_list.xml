@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorThemeDark"
+    android:orientation="vertical"
+    tools:context=".contract.list.MovieListActivity">
+
+    <include layout="@layout/top_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.pxf.fftv.plus.custom.VerticalScrollView
+            android:layout_width="@dimen/x72"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_video_list_title_root"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/video_list_title"
+                    android:text="综艺" />
+
+                <TextView
+                    android:id="@+id/show_list_title_latest"
+                    style="@style/video_list_sub_title"
+                    android:text="最新上架" />
+
+                <TextView
+                    android:id="@+id/show_list_title_china"
+                    style="@style/video_list_sub_title"
+                    android:text="大陆综艺" />
+
+                <TextView
+                    android:id="@+id/show_list_title_ht"
+                    style="@style/video_list_sub_title"
+                    android:text="港台综艺" />
+
+                <TextView
+                    android:id="@+id/show_list_title_ea"
+                    style="@style/video_list_sub_title"
+                    android:text="欧美综艺" />
+
+                <TextView
+                    android:id="@+id/show_list_title_jk"
+                    style="@style/video_list_sub_title"
+                    android:text="日韩综艺" />
+            </LinearLayout>
+        </com.pxf.fftv.plus.custom.VerticalScrollView>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/show_list_refresh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/show_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_default" />
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+
+</LinearLayout>

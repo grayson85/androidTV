@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x140"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:id="@+id/video_list_item_root"
+        style="@style/video_item_card_root"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <ImageView
+            android:id="@+id/video_list_item_iv_image"
+            style="@style/video_item_card_image" />
+
+        <TextView
+            android:id="@+id/video_list_item_tv_title"
+            style="@style/video_item_card_text" />
+
+        <ImageView
+            android:id="@+id/video_list_item_iv_icon"
+            style="@style/video_item_card_play_icon" />
+    </RelativeLayout>
+</RelativeLayout>

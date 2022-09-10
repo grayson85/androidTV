@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".contract.SearchNewActivity">
+
+    <LinearLayout
+        android:layout_width="@dimen/x200"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_search_left"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x18"
+            android:layout_marginTop="@dimen/x24"
+            android:layout_marginRight="@dimen/x18"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/x12"
+                android:layout_height="@dimen/x12"
+                android:focusable="false"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/search_et_keywords"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x8"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:hint="支持首字母搜索"
+                android:maxLines="1"
+                android:nextFocusRight="@id/search_root_search"
+                android:nextFocusDown="@id/search_root_search"
+                android:textColor="#17BEDA"
+                android:textColorHint="#555555"
+                android:textSize="@dimen/x12"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/search_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/x18"
+            android:layout_marginTop="@dimen/x6"
+            android:layout_marginRight="@dimen/x18"
+            android:layout_marginBottom="@dimen/x6"
+            android:background="#414548"
+            android:focusable="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/search_root_delete"
+                style="@style/top_bar_menu"
+                android:layout_marginLeft="@dimen/x18"
+                android:nextFocusUp="@id/search_et_keywords">
+
+                <ImageView
+                    android:id="@+id/search_iv_delete"
+                    style="@style/common_menu_icon"
+                    android:src="@drawable/ic_delete_normal" />
+
+                <TextView
+                    android:id="@+id/search_tv_delete"
+                    style="@style/common_menu_text"
+                    android:text="清空" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/search_root_search"
+                style="@style/top_bar_menu"
+                android:layout_marginLeft="@dimen/x18"
+                android:nextFocusUp="@id/search_et_keywords">
+
+                <ImageView
+                    android:id="@+id/search_iv_search"
+                    style="@style/common_menu_icon"
+                    android:src="@drawable/ic_search_normal" />
+
+                <TextView
+                    android:id="@+id/search_tv_search"
+                    style="@style/common_menu_text"
+                    android:text="搜索" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recycler_view_letter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x18"
+            android:layout_marginTop="@dimen/x12"
+            android:layout_marginRight="@dimen/x18"
+            android:layout_marginBottom="@dimen/x24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_root_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_default"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/search_tv_result_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x18"
+            android:layout_marginTop="@dimen/x24"
+            android:layout_marginRight="@dimen/x18"
+            android:text="搜索结果"
+            android:textColor="@color/colorFocus"
+            android:textSize="@dimen/x14" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recycler_view_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x18"
+            android:layout_marginTop="@dimen/x12"
+            android:layout_marginRight="@dimen/x18" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_root_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_default">
+
+        <com.pxf.fftv.plus.custom.monindicator.MonIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:circleRadius="@dimen/x8"
+            app:cycle="600" />
+
+    </RelativeLayout>
+
+</LinearLayout>

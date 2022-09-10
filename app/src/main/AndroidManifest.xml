@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pxf.fftv.plus">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:name=".FFTVApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="channel"
+            android:value="fftv" />
+
+
+        <activity
+            android:name=".contract.VideoScreenActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.ProtocolActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.SearchNewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppSearchTheme" />
+        <activity
+            android:name=".contract.list.VideoListActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".player.EXOPlayerPhoneActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".player.EXOPlayerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.collect.VideoCollectActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.history.VideoHistoryActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".player.NativePlayerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.live.IjkTVLiveActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".player.IjkMediaPlayerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.CardActivity"
+            android:theme="@style/TransparentActivity" />
+        <activity
+            android:name=".contract.UpdateActivity"
+            android:theme="@style/TransparentActivity" />
+        <activity
+            android:name=".contract.QrCodeActivity"
+            android:theme="@style/TransparentActivity" />
+        <activity
+            android:name=".contract.VipPayActivity"
+            android:theme="@style/TransparentActivity" />
+        <activity
+            android:name=".contract.VipActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.SearchActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.personal.AccountActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.personal.SettingActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.detail.VideoDetailActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".contract.home.HomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/LauncherTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PermissionActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.tencent.smtt.sdk.VideoActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/AppTbsTheme"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.pxf.fftv.plus.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

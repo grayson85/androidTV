@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_root_ad"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/x12"
+    android:background="#11D6D6D6"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="广告位"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x16" />
+
+    <ImageView
+        android:id="@+id/video_iv_ad"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120"
+        android:scaleType="center" />
+</RelativeLayout>

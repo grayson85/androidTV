@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:focusable="false"
+    android:layout_height="match_parent"
+    android:background="@color/colorThemeDark"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.pxf.fftv.plus.custom.VerticalScrollView
+            android:focusable="false"
+            android:layout_width="@dimen/x72"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_video_list_title_root"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/x24"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/video_list_title"
+                    style="@style/video_list_title"
+                    android:text="筛选" />
+
+                <TextView
+                    android:id="@+id/video_list_title_0"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_1"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_2"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_3"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_4"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_5"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_6"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_7"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_8"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+
+                <TextView
+                    android:id="@+id/video_list_title_9"
+                    style="@style/video_list_sub_title"
+                    android:text="标题" />
+            </LinearLayout>
+        </com.pxf.fftv.plus.custom.VerticalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/x24"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_rank"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_area"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_act"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_year"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="@dimen/x4"
+                android:id="@+id/video_screen_recycler_view_language"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x24"
+                android:focusable="false" />
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/video_list_refresh"
+                android:layout_width="match_parent"
+
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:focusable="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/video_list_recycler_view"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_default"
+                    android:focusable="false" />
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

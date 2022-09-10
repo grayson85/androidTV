@@ -1,0 +1,12 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">新马影视</string>
+
+    <string name="app_right_top_title">@string/app_name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="protocal">
+        本软件和服务仅供学习和交流使用，任何下载本软件的用户请于下载之时起24小时之内删除本软件，严禁任何人将本软件或服务用于商业用途，严禁任何用户传播和推广本软件。
+    </string>
+</resources>

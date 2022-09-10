@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111">
+
+    <SurfaceView
+        android:id="@+id/surface_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:focusable="false" />
+
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/x24"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生日信"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x36" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x12"
+            android:text="第1集"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x12" />
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x12"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:maxHeight="@dimen/x4"
+            android:min="0"
+            android:minHeight="@dimen/x4"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progressDrawable="@drawable/video_seekbar_progress"
+            android:thumb="@drawable/video_seekbar_thumb"
+            android:thumbOffset="0dp" />
+
+        <TextView
+            android:id="@+id/video_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="00:00 / 00:00"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x8" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_view_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E8E8E8">
+
+        <com.mingle.widget.LoadingView
+            android:id="@+id/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/x80"
+            android:textSize="@dimen/x20" />
+    </RelativeLayout>
+
+</RelativeLayout>
