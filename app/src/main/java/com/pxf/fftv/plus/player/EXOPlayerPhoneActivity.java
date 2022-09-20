@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.source.hls.DefaultHlsExtractorFactory;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -46,6 +47,7 @@ import io.reactivex.functions.Action;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import static com.google.android.exoplayer2.C.TRACK_TYPE_AUDIO;
 import static com.google.android.exoplayer2.RendererCapabilities.FORMAT_HANDLED;
+import static com.google.android.exoplayer2.extractor.ts.DefaultTsPayloadReaderFactory.FLAG_IGNORE_SPLICE_INFO_STREAM;
 import static com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_PLAYABLE_TRACKS;
 
 public class EXOPlayerPhoneActivity extends AppCompatActivity {
@@ -107,6 +109,7 @@ public class EXOPlayerPhoneActivity extends AppCompatActivity {
         getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
 
         videoUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_URL);
+        Toast.makeText(EXOPlayerPhoneActivity.this, "EXOPlayer", Toast.LENGTH_SHORT).show();
         title = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_TITLE);
         subTitle = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_SUB_TITLE);
         picUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_PIC);
@@ -115,7 +118,7 @@ public class EXOPlayerPhoneActivity extends AppCompatActivity {
 
         titleView.setText(title);
         messageView.setText(subTitle);
-        loadingText.setText("准备播放" + title + " " + subTitle + "...");
+        loadingText.setText("准备播放 <<" + title + ">> " + subTitle + "...");
 
         mTrackSelector = new DefaultTrackSelector(this);
         mPlayer = new SimpleExoPlayer.Builder(this).setTrackSelector(mTrackSelector).build();
@@ -186,8 +189,9 @@ public class EXOPlayerPhoneActivity extends AppCompatActivity {
                 DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
                 DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
                 true);
+        DefaultHlsExtractorFactory defaultHlsExtractorFactory = new DefaultHlsExtractorFactory(FLAG_IGNORE_SPLICE_INFO_STREAM,true);
         if (videoUrl.endsWith("m3u8")) {
-            videoSource = new HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(videoUrl));
+            videoSource = new HlsMediaSource.Factory(dataSourceFactory).setExtractorFactory(defaultHlsExtractorFactory).createMediaSource(Uri.parse(videoUrl));
         } else {
             videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(videoUrl));
         }

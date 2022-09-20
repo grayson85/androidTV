@@ -132,6 +132,7 @@ public class EXOPlayerActivity extends AppCompatActivity {
 
         videoUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_URL);
         Log.d("EXOPlayer", videoUrl);
+        Toast.makeText(EXOPlayerActivity.this, "EXOPlayer", Toast.LENGTH_SHORT).show();
         title = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_TITLE);
         subTitle = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_SUB_TITLE);
         picUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_PIC);
@@ -140,7 +141,7 @@ public class EXOPlayerActivity extends AppCompatActivity {
 
         titleView.setText(title);
         messageView.setText(subTitle);
-        loadingText.setText("准备播放" + title + " " + subTitle + "...");
+        loadingText.setText("准备播放 <<" + title + ">> " + subTitle + "...");
 
         mTrackSelector = new DefaultTrackSelector(this);
         mRenderFactory = new DefaultRenderersFactory(this);
@@ -224,7 +225,6 @@ public class EXOPlayerActivity extends AppCompatActivity {
                     loadingViewRoot.setVisibility(View.GONE);
                     seekbar.setMax((int) (mPlayer.getDuration()) / 1000);
                     videoDuration = (int) (mPlayer.getDuration()) / 1000;
-                    Log.d("EXOPlayer", "loading");
                     mTimer.schedule(new TimerTask() {
                         @Override
                         public void run() {

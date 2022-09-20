@@ -10,13 +10,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.pxf.fftv.plus.BuildConfig;
 import com.pxf.fftv.plus.Const;
 import com.pxf.fftv.plus.FFTVApplication;
 import com.pxf.fftv.plus.R;
@@ -66,6 +66,8 @@ import static com.pxf.fftv.plus.Const.REFRESH_TOKEN_URL;
 import static com.pxf.fftv.plus.Const.RETURN_URL;
 
 public class VideoDetailActivity extends AppCompatActivity implements VideoPlayListAdapter.OnPartClickListener {
+
+
 
     @BindView(R.id.detail_root)
     View detail_root;
@@ -123,6 +125,16 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
 
     @BindView(R.id.top_bar_menu_right_note)
     TextView top_bar_menu_right_note;
+
+    //20220910 - Added new feature sorting
+    @BindView(R.id.detail_tv_sort)
+    View detail_tv_sort;
+
+    @BindView(R.id.tvSort)
+    TextView tvSort;
+
+    @BindView(R.id.detail_tv_sort_image)
+    ImageView detail_tv_sort_image;
 
     private VideoPlayListAdapter mAdapter;
     private Video mVideo;
@@ -223,6 +235,22 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
                 detail_menu_root_return_error.setBackground(getResources().getDrawable(R.drawable.bg_common_menu_normal));
                 detail_iv_return_error.setImageResource(R.drawable.ic_return_error_normal);
                 detail_tv_return_error.setTextColor(getResources().getColor(R.color.colorTextNormal));
+            }
+        });
+        //20220910 - Added new feature sorting
+        Ui.setViewFocusScaleAnimator(detail_tv_sort, new FocusAction() {
+            @Override
+            public void onFocus() {
+                detail_tv_sort.setBackground(getResources().getDrawable(R.drawable.bg_common_menu_focus));
+                detail_tv_sort_image.setImageResource(R.drawable.ic_sort_focus);
+                tvSort.setTextColor(getResources().getColor(R.color.colorTextFocus));
+            }
+
+            @Override
+            public void onLoseFocus() {
+                detail_tv_sort.setBackground(getResources().getDrawable(R.drawable.bg_common_menu_normal));
+                detail_tv_sort_image.setImageResource(R.drawable.ic_sort_normal);
+                tvSort.setTextColor(getResources().getColor(R.color.colorTextNormal));
             }
         });
 
@@ -535,7 +563,24 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
 
         //if (BuildConfig.DEBUG || (Const.FEATURE_12 && FFTVApplication.VIP_MODE == 0)) {
         if (true) {
-            VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+            Log.wtf("Play From -", "<"+mVideo.getVodPlayFrom()+">");
+            switch (mVideo.getVodPlayFrom()){
+                case "wjm3u8":
+                    Log.wtf("VideoDetailActivity","Set Player to IJKPlayer "+ mVideo.getVodPlayFrom());
+                    if (finalUrl.contains("cdtlas")){
+                        VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+                    }else{
+                        VideoPlayer.getVideoPlayer(3).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+                    }
+                    break;
+                case "fsm3u8":
+                case "wolong":
+                    Log.wtf("VideoDetailActivity","Set Player to EXOPlayer " + mVideo.getVodPlayFrom());
+                    VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+                    break;
+            }
+            //VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+            //VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
         } else {
             if (Const.FEATURE_11) {
                 // 限制多端登录
@@ -751,8 +796,24 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
             detail_tv_collect.setText("收藏");
             detail_iv_collect.setImageResource(R.drawable.ic_collected_focus);
         }
-
-
     }
 
+    //20220910 - Added new feature sorting
+    @OnClick(R.id.detail_tv_sort)
+    public void onSortClick() {
+        int maxParts = mVideo.getParts().size();
+        Video sortVideo = new Video();
+        if (maxParts > 0 ) {
+            ArrayList<Video.Part> parts = new ArrayList<>();
+            Video.Part part;
+            for(int i = maxParts; i>0; i--){
+                part = mVideo.getParts().get(i-1);
+                parts.add(part);
+            }
+            sortVideo.setParts(parts);
+        }
+        mVideo.synParts(sortVideo);
+        mAdapter = new VideoPlayListAdapter(this, mVideo.getParts(), this);
+        video_detail_recycler_view.setAdapter(mAdapter);
+    }
 }

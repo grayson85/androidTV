@@ -30,4 +30,21 @@ public class VideoPlayer {
                 return NativePlayer.getInstance();
         }
     }
+
+    public static IVideoPlayer getVideoPlayer(int context) {
+        switch (context) {
+            case 2:
+                // 腾讯X5支持资源加速，不支持历史断点以及自动下一集
+                return TBSVideoPlayer.getInstance();
+            case 3:
+                return IjkVideoPlayer.getInstance();
+            case 4:
+                // 支持音轨切换
+                return EXOVideoPlayer.getInstance();
+            default:
+                // Const.NATIVE_PLAYER_ENGINE
+                // 原生播放
+                return NativePlayer.getInstance();
+        }
+    }
 }

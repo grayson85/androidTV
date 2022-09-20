@@ -187,6 +187,27 @@
             style="@style/video_title_text"
             android:layout_marginLeft="@dimen/x6"
             android:text="播放列表" />
+
+        <LinearLayout
+            android:id="@+id/detail_tv_sort"
+            style="@style/common_menu_root"
+            android:layout_marginLeft="@dimen/x8">
+
+            <ImageView
+                android:id="@+id/detail_tv_sort_image"
+                style="@style/common_menu_icon"
+                android:src="@drawable/ic_sort_normal" />
+
+            <TextView
+                android:id="@+id/tvSort"
+                android:focusable="true"
+                android:gravity="center"
+                style="@style/common_menu_text"
+                android:layout_width="@dimen/x20"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:text="倒序"/>
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

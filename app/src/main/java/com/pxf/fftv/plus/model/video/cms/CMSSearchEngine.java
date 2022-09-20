@@ -52,7 +52,7 @@ public class CMSSearchEngine implements ISearchEngine {
                     String[] source = item.getVod_play_from().split("\\$\\$\\$");
                     int filterIndex = Arrays.asList(source).indexOf("wjm3u8");
 
-                    if (!(filterIndex == 0 && source.length == 1)) {
+                    //if (!(filterIndex == 0 && source.length == 1)) {
                         video.setTitle(item.getVod_name());
 
                         ArrayList<Video.Actor> actors = new ArrayList<>();
@@ -81,13 +81,14 @@ public class CMSSearchEngine implements ISearchEngine {
                         // 不同资源
                         String[] resources = item.getVod_play_url().split("\\$\\$\\$");
                         // 不同的集数
-                        //String[] sets = resources[0].split("\\#");
-                        String[] sets;
-                        if (filterIndex == 0){
-                            sets = resources[1].split("\\#");
-                        }else{
-                            sets = resources[0].split("\\#");
-                        }
+                        String[] sets = resources[0].split("\\#");
+                        video.setVodPlayFrom(source[0]);
+//                        String[] sets;
+//                        if (filterIndex == 0){
+//                            sets = resources[1].split("\\#");
+//                        }else{
+//                            sets = resources[0].split("\\#");
+//                        }
                         for (int j = 0; j < sets.length; j++) {
                             String[] urlArray = sets[j].split("\\$");
                             if (urlArray.length == 2) {
@@ -103,7 +104,7 @@ public class CMSSearchEngine implements ISearchEngine {
                         videos.add(video);
                     }
                 }
-            }
+            //}
         } catch (Exception e) {
             e.printStackTrace();
         }

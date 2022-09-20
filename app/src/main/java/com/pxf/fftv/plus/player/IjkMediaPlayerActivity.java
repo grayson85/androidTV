@@ -113,6 +113,7 @@ public class IjkMediaPlayerActivity extends Activity {
 
         titleView.setText(title);
         messageView.setText(subTitle);
+        loadingText.setText("准备播放 <<" + title + ">> " + subTitle + "...");
         menuRoot.setVisibility(View.GONE);
         seekbar.setFocusable(false);
 
@@ -203,6 +204,7 @@ public class IjkMediaPlayerActivity extends Activity {
 
     private void play(SurfaceHolder holder) {
         mPlayer = new IjkMediaPlayer();
+        Toast.makeText(IjkMediaPlayerActivity.this, "IjkMediaPlayer", Toast.LENGTH_SHORT).show();
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "protocol_whitelist", "async,cache,crypto,file,http,https,ijkhttphook,ijkinject,ijklivehook,ijklongurl,ijksegment,ijktcphook,pipe,rtp,tcp,tls,udp,ijkurlhook,data");
         //开启硬解码
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-hevc", 1);
@@ -213,7 +215,7 @@ public class IjkMediaPlayerActivity extends Activity {
         IjkMediaPlayer.native_setLogLevel(IjkMediaPlayer.IJK_LOG_DEBUG);
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"analyzeduration",3);
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"packet-buffering",1);
-        mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
+        mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 1000 * 1024);
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"framedrop",5);
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fflags", "fastseek");
         mPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "flush_packets", 1);
@@ -282,6 +284,13 @@ public class IjkMediaPlayerActivity extends Activity {
             }
         });
 
+        mPlayer.setOnErrorListener(new IMediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
+                return false;
+            }
+        });
+
         mPlayer.start();
     }
 
@@ -289,6 +298,21 @@ public class IjkMediaPlayerActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
+                // new feature press down to play next episode
+//                if (!isPrepare) {
+//                    return false;
+//                }
+//                if (currentPartPosition != -1) {
+//                    Toast.makeText(IjkMediaPlayerActivity.this, "即将播放下一集", Toast.LENGTH_SHORT).show();
+//                    EventBus.getDefault().postSticky(new AutoNextEvent(currentPartPosition));
+//                    Observable.empty().delay(3000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).doOnComplete(new Action() {
+//                        @Override
+//                        public void run() throws Exception {
+//                            finish();
+//                        }
+//                    }).subscribe();
+//                }
+//                return true;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!isPrepare) {
                     return false;

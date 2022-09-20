@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,8 @@ public class SearchNewActivity extends AppCompatActivity implements SearchNewAda
     private CompositeDisposable mDisposable;
     private ArrayList<Video> mResultList;
 
+    private long mLastKeyDownTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,9 +148,9 @@ public class SearchNewActivity extends AppCompatActivity implements SearchNewAda
 
         search_recycler_view_result.setLayoutManager(new GridLayoutManager(this, 4));
         // 优化
-        // search_recycler_view_result.setHasFixedSize(true);
+        //search_recycler_view_result.setHasFixedSize(true);
         // 卡片最大缓存数量，该数量以内的卡片能保证动画效果不卡顿
-        // search_recycler_view_result.setItemViewCacheSize(500);
+        search_recycler_view_result.setItemViewCacheSize(500);
 
         search_line.requestFocus();
     }
@@ -202,6 +205,20 @@ public class SearchNewActivity extends AppCompatActivity implements SearchNewAda
                     .subscribe(observer);
             mDisposable.add(observer);
         }
+    }
+
+    //20200919 - Fixed scroll down lose focus
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        long current = System.currentTimeMillis();
+        boolean res = false;
+        if (current - mLastKeyDownTime < 300 ) {
+            res = true;
+        } else {
+            res = super.onKeyDown(keyCode, event);
+            mLastKeyDownTime = current;
+        }
+        return res;
     }
 
     @Override

@@ -102,6 +102,10 @@ public class Video implements Serializable {
         this.parts = parts;
     }
 
+    //20220910 - Added new feature sorting
+    public void synParts(Video video){
+        this.parts = video.getParts();
+    }
     public String getYear() {
         return year;
     }

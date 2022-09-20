@@ -60,6 +60,9 @@
             android:name=".player.IjkMediaPlayerActivity"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".player.IjkPlayerPhoneActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".contract.CardActivity"
             android:theme="@style/TransparentActivity" />
         <activity
@@ -93,8 +96,8 @@
             android:theme="@style/LauncherTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
