@@ -212,6 +212,18 @@
         <item name="android:paddingRight">@dimen/x8</item>
     </style>
 
+    <style name="common_menu_special">
+        <item name="android:layout_marginTop">@dimen/video_detail_content_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/video_detail_content_vertical_margin</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="top_bar_menu" parent="@style/common_menu_root">
         <item name="android:layout_marginRight">@dimen/x16</item>
     </style>
