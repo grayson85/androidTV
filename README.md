@@ -33,6 +33,12 @@ iii) 移除release版需要登入才能播放影片
 
 iv) 添加公告
 
+v) 20220910 - 新增倒序功能 (Added new feature sorting)
+
+vi) 20220910 - 新增ijkPlayer支持移动设备 (Added new feature ijkPlayer for Phone) - 还在持续更新中
+
+vii) 20200919 - 修正搜索后滑动失焦问题 (Fixed scroll down lose focus)
+
 # 未来修改
 i) 影片多源显示
 
