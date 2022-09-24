@@ -3,6 +3,7 @@ package com.pxf.fftv.plus.contract.detail;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import static com.pxf.fftv.plus.Const.ANIMATION_ZOOM_OUT_SCALE;
 
 public class VideoPlayListAdapter extends RecyclerView.Adapter<VideoPlayListAdapter.ViewHolder> {
 
+    private Video.Part part;
     private Activity activity;
 
     private ArrayList<Video.Part> partList;
@@ -85,6 +87,12 @@ public class VideoPlayListAdapter extends RecyclerView.Adapter<VideoPlayListAdap
             }
         });
         return new ViewHolder(view);
+    }
+
+    //20220923 - Added new feature indicate multiple source
+    public void updateReceiptsList(ArrayList<Video.Part> newlist) {
+        partList = newlist;
+        this.notifyDataSetChanged();
     }
 
     @Override

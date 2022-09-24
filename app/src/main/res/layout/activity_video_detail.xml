@@ -208,7 +208,33 @@
                 android:layout_marginLeft="@dimen/x10"
                 android:text="倒序"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_tv_vod"
+            style="@style/common_menu_special"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_marginLeft="@dimen/x6">
+
+            <TextView
+                style="@style/video_title_text"
+                android:layout_marginLeft="@dimen/x6"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="播放源" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_tv_vod_source"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/video_detail_recycler_view"
@@ -218,7 +244,6 @@
         android:layout_marginRight="@dimen/x24"
         android:layout_marginBottom="@dimen/x12"
         android:layout_weight="1">
-
     </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

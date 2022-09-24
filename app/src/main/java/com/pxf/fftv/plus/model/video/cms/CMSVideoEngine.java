@@ -136,17 +136,10 @@ public class CMSVideoEngine implements IVideoEngine {
                     for (int i = 0; i < bean.getList().size(); i++) {
                         Video video = new Video();
                         CMSVideoBean.Item item = bean.getList().get(i);
-                        String[] source = item.getVod_play_from().split("\\$\\$\\$");
-                        int filterIndex = Arrays.asList(source).indexOf("wjm3u81");
-                        //System.out.println("Up - filterIndex"+ filterIndex + " source length"+ source.length);
-                        //if (!(filterIndex == 0 && source.length == 1)) {
-                        //if (!item.getVod_play_from().equals("wjm3u8")) {
                             video.setType(type);
-
                             video.setPageCount(bean.getPagecount());
                             video.setPageItemNum(Integer.parseInt(bean.getLimit()));
                             video.setVodPlayFrom(item.getVod_play_from());
-
                             video.setTitle(item.getVod_name());
 
                             ArrayList<Video.Actor> actors = new ArrayList<>();
@@ -170,34 +163,35 @@ public class CMSVideoEngine implements IVideoEngine {
                             video.setArea(item.getVod_area());
                             video.setLanguage(item.getVod_lang());
 
-                            ArrayList<Video.Part> parts = new ArrayList<>();
+
                             // 不同资源
-                            String[] resources = item.getVod_play_url().split("\\$\\$\\$");
+                            String[] from = item.getVod_play_from().split("\\$\\$\\$");
 
                             // 不同的集数
-                            String[] sets = resources[0].split("\\#");
-                            video.setVodPlayFrom(source[0]);
-//                            String[] sets;
-//                            if (filterIndex == 0){
-//                                sets = resources[1].split("\\#");
-//                            }else if(filterIndex == 0 && source.length == 1){
-//                                continue;
-//                            }
-//                            else{
-//                                sets = resources[0].split("\\#");
-//                            }
-                            for (int j = 0; j < sets.length; j++) {
-                                String[] urlArray = sets[j].split("\\$");
-                                if (urlArray.length == 2) {
-                                    Video.Part part = new Video.Part();
-                                    part.setTitle(urlArray[0]);
-                                    part.setUrl(urlArray[1]);
-                                    parts.add(part);
+                            String[] resources = item.getVod_play_url().split("\\$\\$\\$");
+                            //Log.wtf("CMSVideoEng", resources[0]);
+                            //video.setVodPlayFrom(from[0]);
+                            ArrayList<Video.VodSource> vodSources = new ArrayList<>();
+                            for(int z=0; z<from.length; z++) {
+                                ArrayList<Video.Part> parts = new ArrayList<>();
+                                Video.VodSource source = new Video.VodSource();
+                                String[] sets = resources[z].split("\\#");
+                                for (int j = 0; j < sets.length; j++) {
+                                    String[] urlArray = sets[j].split("\\$");
+                                    if (urlArray.length == 2) {
+                                        Video.Part part = new Video.Part();
+                                        part.setTitle(urlArray[0]);
+                                        part.setUrl(urlArray[1]);
+                                        parts.add(part);
+                                    }
                                 }
+                                source.sourceName = from[z];
+                                source.part = parts;
+                                vodSources.add(source);
+
+                                video.setParts(parts);
                             }
-
-                            video.setParts(parts);
-
+                            video.setVodSource(vodSources);
                             videos.add(video);
                         }
                     }
@@ -227,11 +221,6 @@ public class CMSVideoEngine implements IVideoEngine {
                     for (int i = 0; i < bean.getList().size(); i++) {
                         Video video = new Video();
                         CMSVideoBean.Item item = bean.getList().get(i);
-                        String[] source = item.getVod_play_from().split("\\$\\$\\$");
-                        int filterIndex = Arrays.asList(source).indexOf("wjm3u81");
-                        //System.out.println(item.getVod_play_from());
-                        //System.out.println("Down - filterIndex"+ filterIndex + " source length"+ source.length);
-                        //if (!(filterIndex == 0 && source.length == 1)) {
                         video.setVideoEngineParam(param);
                         video.setPageCount(bean.getPagecount());
                         video.setPageItemNum(Integer.parseInt(bean.getLimit()));
@@ -260,41 +249,39 @@ public class CMSVideoEngine implements IVideoEngine {
                         video.setArea(item.getVod_area());
                         video.setLanguage(item.getVod_lang());
 
-                        ArrayList<Video.Part> parts = new ArrayList<>();
+
                         // 不同资源
-                        String[] resources = item.getVod_play_url().split("\\$\\$\\$");
+                        String[] from = item.getVod_play_from().split("\\$\\$\\$");
 
-                        //Log.wtf("CMSVideoEngine","资源"+ Arrays.toString(source));
-                       //Log.wtf("CMSVideoEngine","不同资源"+ Arrays.toString(resources));
-                        //System.out.println(Arrays.toString(source));
                         // 不同的集数
-                        String[] sets = resources[0].split("\\#");
-                        video.setVodPlayFrom(source[0]);
-//                            String[] sets;
-//                            if (filterIndex == 0){
-//                                sets = resources[1].split("\\#");
-//                                video.setVodPlayFrom(source[1]);
-//                            }else{
-//                                sets = resources[0].split("\\#");
-//                                video.setVodPlayFrom(source[0]);
-//                            }
-                        for (int j = 0; j < sets.length; j++) {
-                            String[] urlArray = sets[j].split("\\$");
-                            if (urlArray.length == 2) {
-                                Video.Part part = new Video.Part();
-                                part.setTitle(urlArray[0]);
-                                part.setUrl(urlArray[1]);
-                                parts.add(part);
+                        String[] resources = item.getVod_play_url().split("\\$\\$\\$");
+                        //Log.wtf("CMSVideoEng", resources[0]);
+                        //video.setVodPlayFrom(from[0]);
+                        ArrayList<Video.VodSource> vodSources = new ArrayList<>();
+                        for(int z=0; z<from.length; z++) {
+                            ArrayList<Video.Part> parts = new ArrayList<>();
+                            Video.VodSource source = new Video.VodSource();
+                            String[] sets = resources[z].split("\\#");
+                            for (int j = 0; j < sets.length; j++) {
+                                String[] urlArray = sets[j].split("\\$");
+                                if (urlArray.length == 2) {
+                                    Video.Part part = new Video.Part();
+                                    part.setTitle(urlArray[0]);
+                                    part.setUrl(urlArray[1]);
+                                    parts.add(part);
+                                }
                             }
+                            source.sourceName = from[z];
+                            source.part = parts;
+                            vodSources.add(source);
+
+                            video.setParts(parts);
                         }
-
-                        video.setParts(parts);
-
+                        video.setVodSource(vodSources);
                         videos.add(video);
                     }
                 }
             }
-            //}
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -18,6 +18,8 @@ public class Video implements Serializable {
 
     private ArrayList<Actor> actors;
 
+    private ArrayList<VodSource> sources;
+
     private ArrayList<Part> parts;
 
     private String year;
@@ -103,8 +105,9 @@ public class Video implements Serializable {
     }
 
     //20220910 - Added new feature sorting
-    public void synParts(Video video){
+    public void synParts(Video video, int position){
         this.parts = video.getParts();
+        this.getVodSource().get(position).part = video.getParts();
     }
     public String getYear() {
         return year;
@@ -220,6 +223,14 @@ public class Video implements Serializable {
         this.videoEngineParam = videoEngineParam;
     }
 
+    public ArrayList<VodSource> getVodSource() {
+        return sources;
+    }
+
+    public void setVodSource(ArrayList<VodSource> sources) {
+        this.sources = sources;
+    }
+
     public static class Director implements Serializable{
 
         private static final long serialVersionUID = 998358480289322234L;
@@ -273,5 +284,10 @@ public class Video implements Serializable {
         public void setUrl(String url) {
             this.url = url;
         }
+    }
+
+    public static class VodSource implements Serializable{
+        public String sourceName;
+        public ArrayList<Video.Part> part;
     }
 }

@@ -211,7 +211,7 @@
         <item name="android:paddingTop">@dimen/x4</item>
         <item name="android:paddingRight">@dimen/x8</item>
     </style>
-    
+
     <style name="top_bar_menu" parent="@style/common_menu_root">
         <item name="android:layout_marginRight">@dimen/x16</item>
     </style>

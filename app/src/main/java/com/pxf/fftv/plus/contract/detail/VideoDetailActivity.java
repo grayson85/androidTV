@@ -9,14 +9,20 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.snackbar.Snackbar;
 import com.pxf.fftv.plus.Const;
 import com.pxf.fftv.plus.FFTVApplication;
 import com.pxf.fftv.plus.R;
@@ -65,9 +71,7 @@ import static com.pxf.fftv.plus.Const.ANIMATION_ZOOM_OUT_DURATION;
 import static com.pxf.fftv.plus.Const.REFRESH_TOKEN_URL;
 import static com.pxf.fftv.plus.Const.RETURN_URL;
 
-public class VideoDetailActivity extends AppCompatActivity implements VideoPlayListAdapter.OnPartClickListener {
-
-
+public class VideoDetailActivity extends AppCompatActivity implements VideoPlayListAdapter.OnPartClickListener, VideoVODSourceAdapter.OnVODClickListener {
 
     @BindView(R.id.detail_root)
     View detail_root;
@@ -136,8 +140,14 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
     @BindView(R.id.detail_tv_sort_image)
     ImageView detail_tv_sort_image;
 
+    //20220923 - Added new feature indicate multiple source
+    @BindView(R.id.detail_tv_vod_source)
+    RecyclerView detail_tv_vod_source;
+
     private VideoPlayListAdapter mAdapter;
+    private VideoVODSourceAdapter vAdapter;
     private Video mVideo;
+    private int selected = 0;
 
     private CompositeDisposable mDisposable;
 
@@ -254,6 +264,7 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
             }
         });
 
+        detail_tv_vod_source.setLayoutManager(new GridLayoutManager(this, 5));
         video_detail_recycler_view.setLayoutManager(new GridLayoutManager(this, 8));
 
 
@@ -455,7 +466,9 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
 
     @Override
     public void onPartClick(int position) {
-        String url = mVideo.getParts().get(position).getUrl();
+        //String url = mVideo.getParts().get(position).getUrl();
+        //20220923 - Added new feature indicate multiple source
+        String url = mVideo.getVodSource().get(selected).part.get(position).getUrl();
         // 保存url和名称作为反馈用
         String saveReturnUrl = url.substring(url.indexOf("://") + 3);
         if (saveReturnUrl.indexOf("?from=") > 0) {
@@ -563,24 +576,25 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
 
         //if (BuildConfig.DEBUG || (Const.FEATURE_12 && FFTVApplication.VIP_MODE == 0)) {
         if (true) {
-            Log.wtf("Play From -", "<"+mVideo.getVodPlayFrom()+">");
-            switch (mVideo.getVodPlayFrom()){
-                case "wjm3u8":
-                    Log.wtf("VideoDetailActivity","Set Player to IJKPlayer "+ mVideo.getVodPlayFrom());
-                    if (finalUrl.contains("cdtlas")){
-                        VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
-                    }else{
-                        VideoPlayer.getVideoPlayer(3).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
-                    }
-                    break;
-                case "fsm3u8":
-                case "wolong":
-                    Log.wtf("VideoDetailActivity","Set Player to EXOPlayer " + mVideo.getVodPlayFrom());
-                    VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
-                    break;
-            }
-            //VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
-            //VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+            Log.wtf("Play From -", "<"+mVideo.getVodSource().get(selected).sourceName+">");
+//            switch (mVideo.getVodSource().get(selected).sourceName){
+//                case "wjm3u8":
+//                    Log.wtf("VideoDetailActivity","Set Player to IJKPlayer "+ mVideo.getVodSource().get(selected).sourceName);
+//                    if (finalUrl.contains("cdtlas")){
+//                        VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+//                    }else{
+//                        VideoPlayer.getVideoPlayer(3).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+//                    }
+//                    break;
+//                case "fsm3u8":
+//                case "wolong":
+//                    Log.wtf("VideoDetailActivity","Set Player to EXOPlayer " + mVideo.getVodSource().get(selected).sourceName);
+//                    VideoPlayer.getVideoPlayer(4).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+//                    break;
+//            }
+            VideoPlayer.getVideoPlayer(VideoDetailActivity.this).play(VideoDetailActivity.this, finalUrl, mVideo.getTitle(), mVideo.getParts().get(currentPart).getTitle(), currentPart, mVideo.getImageUrl(), -1);
+
+
         } else {
             if (Const.FEATURE_11) {
                 // 限制多端登录
@@ -667,7 +681,7 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     private void loadData() {
         String tag = mVideo.getArea() + " · " + mVideo.getYear() + " · " + mVideo.getTypeText();
         if (mVideo.getLanguage() != null && !mVideo.getLanguage().isEmpty()) {
@@ -693,7 +707,15 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
 
         detail_tv_content.setText("简介：" + mVideo.getDescription());
 
-        mAdapter = new VideoPlayListAdapter(this, mVideo.getParts(), this);
+//        for (int i = 0; i < mVideo.getVodSource().size(); i++) {
+//            Log.wtf("VideoDetailActivity VodSource- ", String.valueOf(mVideo.getVodSource().get(i).part));
+//        }
+
+        //20220923 - Added new feature indicate multiple source
+        vAdapter = new VideoVODSourceAdapter(this, mVideo.getVodSource(),this);
+        detail_tv_vod_source.setAdapter(vAdapter);
+
+        mAdapter = new VideoPlayListAdapter(this, mVideo.getVodSource().get(selected).part, this);
         video_detail_recycler_view.setAdapter(mAdapter);
     }
 
@@ -801,19 +823,29 @@ public class VideoDetailActivity extends AppCompatActivity implements VideoPlayL
     //20220910 - Added new feature sorting
     @OnClick(R.id.detail_tv_sort)
     public void onSortClick() {
-        int maxParts = mVideo.getParts().size();
+        //int maxParts = mVideo.getParts().size();
+        int maxParts = mVideo.getVodSource().get(selected).part.size();
+
         Video sortVideo = new Video();
         if (maxParts > 0 ) {
             ArrayList<Video.Part> parts = new ArrayList<>();
             Video.Part part;
             for(int i = maxParts; i>0; i--){
-                part = mVideo.getParts().get(i-1);
+                //part = mVideo.getParts().get(i-1);
+                part = mVideo.getVodSource().get(selected).part.get(i-1);
                 parts.add(part);
             }
             sortVideo.setParts(parts);
         }
-        mVideo.synParts(sortVideo);
-        mAdapter = new VideoPlayListAdapter(this, mVideo.getParts(), this);
+        mVideo.synParts(sortVideo,selected);
+        mAdapter = new VideoPlayListAdapter(this, mVideo.getVodSource().get(selected).part, this);
         video_detail_recycler_view.setAdapter(mAdapter);
+    }
+
+    //20220923 - Added new feature indicate multiple source
+    @Override
+    public void onVODSourceClick(int position) {
+        selected = position;
+        mAdapter.updateReceiptsList(mVideo.getVodSource().get(position).part);
     }
 }

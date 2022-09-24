@@ -75,15 +75,15 @@ public class VideoHistoryActivity extends AppCompatActivity implements VideoHist
     @Override
     public void onHistoryItemClick(int position) {
         VideoHistory item = historyList.get(position);
-        //VideoPlayer.getVideoPlayer(this).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1, item.getPicUrl(), item.getLastPosition());
+        VideoPlayer.getVideoPlayer(this).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1, item.getPicUrl(), item.getLastPosition());
         Log.wtf("History",item.getUrl());
-        if (item.getUrl().contains("qqaku")){
-            Log.wtf("History","Set ijkPlayer");
-            VideoPlayer.getVideoPlayer(3).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1,item.getPicUrl(), item.getLastPosition());
-        }else{
-            Log.wtf("History","Set Exoplayer");
-            VideoPlayer.getVideoPlayer(4).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1,item.getPicUrl(), item.getLastPosition());
-        }
+//        if (item.getUrl().contains("qqaku")){
+//            Log.wtf("History","Set ijkPlayer");
+//            VideoPlayer.getVideoPlayer(3).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1,item.getPicUrl(), item.getLastPosition());
+//        }else{
+//            Log.wtf("History","Set Exoplayer");
+//            VideoPlayer.getVideoPlayer(4).play(this, item.getUrl(), item.getTitle(), item.getSubTitle(), -1,item.getPicUrl(), item.getLastPosition());
+//        }
 
     }
 
