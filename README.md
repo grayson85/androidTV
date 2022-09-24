@@ -61,5 +61,7 @@ viii) 20220923 - 新增视频多源选择 Added new feature indicate multiple so
 
 # 未来修改
 i) 影片集数分类
+
 ![image](https://user-images.githubusercontent.com/37401242/189471881-e38ac0ac-e2ee-4f3e-8262-9da58fa970bc.png)
 ![image](https://user-images.githubusercontent.com/37401242/189471893-81a78f13-772f-493a-ae55-f886fdbec0a1.png)
+![image](https://user-images.githubusercontent.com/37401242/192080099-8e607eaf-d3d8-4965-8fd3-d19a953238c1.png)
