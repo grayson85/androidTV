@@ -27,7 +27,12 @@ app/src/main/java/com/pxf/fftv/plus/contract/live/IjkTVLiveActivity.java 120行
 app/src/main/res/layout/activity_setting.xml
 
 # 注意
-此app需要配合更改过的MACCMS api才能完美运行。需要的朋友可以私信我。
+此app需要配合更改过的MACCMS api才能完美运行。
+
+``` 
+https://github.com/grayson85/androidTV/blob/master/maccmsAPI/Provide.php
+```
+```
 Maccms API新增如下:
 i) MagicBlack版本API只能查询子分类。修改后API能支持主分类查询
 
@@ -40,9 +45,10 @@ https://【你的域名】/api.php/provide/vod/?ac=detail&lvl=2
 iii) 新增首字母查询
 
 https://【你的域名】/api.php/provide/vod/?ac=detail&word=HZW
-
+```
 
 # 修复内容
+````
 i) https源无法显示图片
 
 ii) 影片数据加载错误
@@ -58,7 +64,7 @@ vi) 20220910 - 新增ijkPlayer支持移动设备 (Added new feature ijkPlayer fo
 vii) 20200919 - 修正搜索后滑动失焦问题 (Fixed scroll down lose focus)
 
 viii) 20220923 - 新增视频多源选择 Added new feature indicate multiple source
-
+````
 # 未来修改
 i) 影片集数分类
 
