@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused State -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="@color/modernAccent"
+                android:endColor="@color/modernAccentDark"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- Normal State -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="@color/modernPrimary"
+                android:endColor="@color/modernPrimaryDark"
+                android:type="linear" />
+        </shape>
+    </item>
+</selector>

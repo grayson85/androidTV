@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_default"
+    android:orientation="vertical"
+    android:padding="@dimen/x20"
+    tools:context=".contract.personal.SettingActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="设置"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x20"
+        android:textStyle="bold" />
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="视频资源" />
+
+        <TextView
+            android:id="@+id/setting_tv_video_cms"
+            style="@style/setting_item_selection"
+            android:text="@string/app_name" />
+//android:text="CMS"
+        <TextView
+            android:id="@+id/setting_tv_video_ok"
+            style="@style/setting_item_selection"
+            android:visibility="invisible"
+            android:text="OK资源网" />
+
+        <TextView
+            android:id="@+id/setting_tv_video_zd"
+            style="@style/setting_item_selection"
+            android:visibility="invisible"
+            android:text="ZD资源网" />
+
+        <TextView
+            android:id="@+id/setting_tv_video_weiduo"
+            style="@style/setting_item_selection"
+            android:visibility="invisible"
+            android:text="@string/app_name" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="播放引擎" />
+
+        <TextView
+            android:id="@+id/setting_tv_player_native"
+            style="@style/setting_item_selection"
+            android:text="原生" />
+
+        <TextView
+            android:id="@+id/setting_tv_player_exo"
+            style="@style/setting_item_selection"
+            android:text="EXOPlayer" />
+
+        <TextView
+            android:id="@+id/setting_tv_player_ijkplayer"
+            style="@style/setting_item_selection"
+            android:text="IJKPlayer" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="自动登录" />
+
+        <TextView
+            android:id="@+id/setting_tv_auto_login_on"
+            style="@style/setting_item_selection"
+            android:text="开启" />
+
+        <TextView
+            android:id="@+id/setting_tv_auto_login_off"
+            style="@style/setting_item_selection"
+            android:text="关闭" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="版本更新" />
+
+        <TextView
+            android:id="@+id/setting_tv_version_update"
+            style="@style/setting_item_selection"
+            android:layout_width="@dimen/x152"
+            android:text="当前版本：1.0.0" />
+
+        <TextView
+            android:id="@+id/setting_tv_new_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x12"
+            android:text="新版本可用"
+            android:textColor="#F5BA01"
+            android:textSize="@dimen/x8"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/setting_iv_new_version"
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/x18"
+            android:layout_marginLeft="@dimen/x6"
+            android:src="@drawable/ic_setting_new_version"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="缓存清理" />
+
+        <TextView
+            android:id="@+id/setting_tv_clear_cache"
+            style="@style/setting_item_selection"
+            android:layout_width="@dimen/x152"
+            android:text="缓存（0MB）" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/setting_item_root">
+
+        <TextView
+            style="@style/setting_item_title"
+            android:text="网络信息" />
+
+        <TextView
+            android:id="@+id/setting_tv_dns_info"
+            style="@style/setting_item_selection"
+            android:layout_width="wrap_content"
+            android:text="DNS: 8.8.8.8" />
+
+        <TextView
+            android:id="@+id/setting_tv_cms_info"
+            style="@style/setting_item_selection"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="CMS: Unset" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:focusable="false"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:gravity="center"
+        android:padding="@dimen/x4"
+        android:textColor="@color/colorWhite"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:textSize="@dimen/x8"
+        android:id="@+id/tv_live_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_menu_selector"
+        android:layout_marginBottom="@dimen/x2"
+        android:orientation="vertical" />
+</LinearLayout>

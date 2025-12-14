@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorTheme</color>
+    <color name="colorPrimaryDark">@color/colorThemeDark</color>
+    <color name="colorAccent">@color/colorThemeDark</color>
+
+    <color name="colorHalfTransparent">#AA000000</color>
+    <color name="colorTheme">#293149</color>
+    <color name="colorThemeDark">#0D0D0F</color>
+
+    <color name="colorLoading">#232D4B</color>
+    <color name="colorText">#222222</color>
+
+    <color name="colorTextNormal">#8F9094</color>
+    <color name="colorTextFocus">@color/colorWhite</color>
+    <color name="colorTextSelection">#299AEA</color>
+    <color name="colorVipTextNormal">#F1B770</color>
+    <color name="colorVipTextFocus">#8E4B00</color>
+    <color name="colorTabTextCurrentButNoFocus">#299AEA</color>
+    <color name="colorFocus">#299AEA</color>
+    <color name="colorFocusShallow">#19CFCA</color>
+
+    <color name="colorVideoCardTextFocus">#222222</color>
+    <color name="colorVideoCardTextNormal">#B2B6BE</color>
+
+    <color name="colorVideoListTitleFocus">@color/colorWhite</color>
+    <color name="colorVideoListTitleNormal">#D6D6D6</color>
+
+    <color name="colorPersonalFocus">@color/colorWhite</color>
+    <color name="colorPersonalNormal">#D6D6D6</color>
+    <color name="colorPersonalCurrent">#149CFD</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    
+    <color name="colorVideoCardFocus">#D7DCF5</color>
+
+    <color name="accountVipColorFocus">@color/colorVipTextFocus</color>
+    <color name="accountVipColorNormal">#CFCFCF</color>
+
+    <color name="vipTextColor">#BB9466</color>
+
+    <!-- ========== Modern Material Design 3 Colors (API 21+) ========== -->
+    
+    <!-- Primary Colors - Modern Blue/Teal Gradient -->
+    <color name="modernPrimaryStart">#1E88E5</color>
+    <color name="modernPrimaryEnd">#00BCD4</color>
+    <color name="modernPrimary">#1E88E5</color>
+    <color name="modernPrimaryLight">#42A5F5</color>
+    <color name="modernPrimaryDark">#1565C0</color>
+    
+    <!-- Accent Colors - Vibrant Pink/Orange -->
+    <color name="modernAccent">#FF4081</color>
+    <color name="modernAccentLight">#FF6090</color>
+    <color name="modernAccentDark">#E91E63</color>
+    
+    <!-- Background Gradients - Dark Modern -->
+    <color name="modernBgStart">#0D1117</color>
+    <color name="modernBgMid">#161B22</color>
+    <color name="modernBgEnd">#1A1F2E</color>
+    
+    <!-- Surface & Cards -->
+    <color name="modernSurface">#1E2635</color>
+    <color name="modernSurfaceLight">#252D3F</color>
+    <color name="modernSurfaceBright">#2C3548</color>
+    
+    <!-- Text Colors - High Contrast -->
+    <color name="modernTextPrimary">#FFFFFF</color>
+    <color name="modernTextSecondary">#B0B8C0</color>
+    <color name="modernTextTertiary">#7E8697</color>
+    <color name="modernTextDisabled">#4A4F5A</color>
+    
+    <!-- Focus & Selection - Glowing Effects -->
+    <color name="modernFocusGlow">#66FFFFFF</color>
+    <color name="modernFocusBorder">#FFFFFF</color>
+    <color name="modernSelection">#4D00BCD4</color>
+    
+    <!-- Status Colors -->
+    <color name="modernSuccess">#4CAF50</color>
+    <color name="modernWarning">#FFC107</color>
+    <color name="modernError">#F44336</color>
+    <color name="modernInfo">#2196F3</color>
+    <color name="modernLive">#FF3D00</color>
+    
+    <!-- Overlay & Scrim -->
+    <color name="modernOverlay">#CC000000</color>
+    <color name="modernScrim">#B3000000</color>
+    <color name="modernGlassDark">#4D1E2635</color>
+    <color name="modernGlassLight">#1AFFFFFF</color>
+    
+    <!-- Quality Badges -->
+    <color name="modernBadgeHD">#2196F3</color>
+    <color name="modernBadge4K">#9C27B0</color>
+    <color name="modernBadgeVIP">#FFD700</color>
+</resources>

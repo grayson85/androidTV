@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/vip_pay_root"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contract.VipPayActivity">
+
+    <TextView
+        android:id="@+id/vip_pay_tv_title"
+        android:text="正在支付VIP天卡"
+        android:textSize="@dimen/x20"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            style="@style/vip_pay_item_root">
+
+            <TextView
+                android:id="@+id/vip_pay_item_ali_title"
+                android:text="支付宝扫码支付"
+                style="@style/vip_pay_item_title"/>
+
+            <ImageView
+                android:layout_below="@id/vip_pay_item_ali_title"
+                android:id="@+id/vip_pay_iv_qrcode_ali"
+                style="@style/vip_pay_image_qrcode"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/vip_pay_item_root">
+
+            <TextView
+                android:id="@+id/vip_pay_item_wx_title"
+                android:text="微信扫码支付"
+                style="@style/vip_pay_item_title"/>
+
+            <ImageView
+                android:layout_below="@id/vip_pay_item_wx_title"
+                android:id="@+id/vip_pay_iv_qrcode_wx"
+                style="@style/vip_pay_image_qrcode"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/vip_pay_item_root">
+
+            <TextView
+                android:id="@+id/vip_pay_item_qq_title"
+                android:text="QQ扫码支付"
+                style="@style/vip_pay_item_title"/>
+
+            <ImageView
+                android:layout_below="@id/vip_pay_item_qq_title"
+                android:id="@+id/vip_pay_iv_qrcode_qq"
+                style="@style/vip_pay_image_qrcode"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

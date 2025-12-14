@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#000000"
+    android:id="@+id/vip_card_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contract.CardActivity">
+
+    <TextView
+        android:id="@+id/vip_pay_tv_title"
+        android:text="请输入卡密"
+        android:textSize="@dimen/x20"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_width="@dimen/x240"
+        android:layout_marginTop="@dimen/x24"
+        android:id="@+id/vip_card_et_input"
+        style="@style/setting_input"
+        android:text=""
+        android:hint="卡密号码" />
+
+    <TextView
+        android:id="@+id/vip_card_tv_ok"
+        android:layout_width="@dimen/x240"
+        style="@style/setting_btn"
+        android:text="确认" />
+</LinearLayout>

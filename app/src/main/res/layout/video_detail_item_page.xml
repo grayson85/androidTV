@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x16"
+    android:layout_marginTop="@dimen/x2"
+    android:layout_marginBottom="@dimen/x2"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/video_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x14"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/x2"
+        android:layout_marginRight="@dimen/x2"
+        android:background="@drawable/video_detail_content_normal"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x2"
+        android:paddingTop="@dimen/x1"
+        android:paddingRight="@dimen/x2"
+        android:paddingBottom="@dimen/x1"
+        android:singleLine="true"
+        android:textColor="@color/colorTextNormal"
+        android:textSize="@dimen/x8"
+        app:minTextSize="@dimen/x4" />
+
+</RelativeLayout>

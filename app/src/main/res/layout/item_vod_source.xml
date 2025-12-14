@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/x6"
+    android:layout_marginBottom="@dimen/x5"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/tvSource"
+        android:layout_width="wrap_content"
+        android:minWidth="@dimen/x40"
+        android:layout_height="@dimen/x20"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_marginRight="@dimen/x4"
+        android:background="@drawable/video_detail_content_normal"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x4"
+        android:paddingTop="@dimen/x1"
+        android:paddingRight="@dimen/x4"
+        android:paddingBottom="@dimen/x1"
+        android:singleLine="true"
+        android:textColor="@color/colorTextNormal"
+        android:textSize="@dimen/x10"
+        app:minTextSize="@dimen/x4" />
+</LinearLayout >

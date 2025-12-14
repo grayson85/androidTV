@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="@dimen/x6"
+    android:layout_width="@dimen/x28"
+    android:layout_height="@dimen/x28"
+    android:focusable="false">
+
+    <TextView
+        android:id="@+id/search_item_tv_letter"
+        android:layout_width="@dimen/x24"
+        android:layout_height="@dimen/x24"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_search_letter_item"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x12"
+        android:textStyle="bold" />
+</RelativeLayout>

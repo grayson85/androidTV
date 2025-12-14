@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="video_card_corner">8dp</dimen>
+    <dimen name="type_corner">@dimen/x2</dimen>
+    <dimen name="video_item_width">@dimen/x70</dimen>
+    <dimen name="video_detail_margin">@dimen/x24</dimen>
+    <dimen name="video_detail_content_vertical_margin">@dimen/x4</dimen>
+
+    <dimen name="vip_pay_qrcode_size">@dimen/x120</dimen>
+</resources>

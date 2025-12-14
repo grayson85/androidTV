@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_top_bar_enhanced"
+    android:paddingLeft="@dimen/x8"
+    android:paddingRight="@dimen/x8"
+    android:paddingTop="@dimen/x6"
+    android:paddingBottom="@dimen/x6"
+    android:elevation="8dp">
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_home"
+        style="@style/top_bar_menu"
+        android:layout_marginLeft="@dimen/x12"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_home"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_home_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_home"
+            style="@style/common_menu_text"
+            android:text="首页" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_history"
+        style="@style/top_bar_menu"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_history"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_history_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_history"
+            style="@style/common_menu_text"
+            android:text="历史" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_search"
+        style="@style/top_bar_menu"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_search"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_search_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_search"
+            style="@style/common_menu_text"
+            android:text="搜索" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_tv_live"
+        style="@style/top_bar_menu"
+        android:visibility="visible"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_tv_live"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_tv_live_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_tv_live"
+            style="@style/common_menu_text"
+            android:text="电视直播" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_iptv"
+        style="@style/top_bar_menu"
+        android:visibility="visible"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_iptv"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_tv_placeholder" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_iptv"
+            style="@style/common_menu_text"
+            android:text="IPTV" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_vip"
+        style="@style/top_bar_menu"
+        android:background="@drawable/bg_vip_menu_normal"
+        android:paddingLeft="@dimen/x16"
+        android:paddingRight="@dimen/x16"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_vip"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_vip_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_vip"
+            style="@style/common_menu_text"
+            android:text="开通VIP"
+            android:textColor="@color/colorVipTextNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar_menu_root_collect"
+        style="@style/top_bar_menu"
+        android:background="@drawable/bg_top_menu_selector">
+
+        <ImageView
+            android:id="@+id/top_bar_iv_collect"
+            style="@style/common_menu_icon"
+            android:src="@drawable/ic_collect_normal" />
+
+        <TextView
+            android:id="@+id/top_bar_tv_collect"
+            style="@style/common_menu_text"
+            android:text="收藏" />
+    </LinearLayout>
+    
+        <!-- Subtle divider -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginRight="@dimen/x12"
+            android:background="#20FFFFFF" />
+    
+        <View style="@style/view_fill" />
+        
+        <!-- Logo and Time stacked vertically -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_marginRight="@dimen/x8">
+            
+            <!-- Logo title -->
+            <TextView
+                android:id="@+id/top_bar_menu_right_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fangzhengmark"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x10"
+                android:textStyle="bold" />
+
+            <!-- Date & Time -->
+            <TextView
+                android:id="@+id/top_bar_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#AAAAAA"
+                android:textSize="@dimen/x8"
+                android:text="" />
+        </LinearLayout>
+            
+</LinearLayout>

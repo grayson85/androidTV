@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x140"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:id="@+id/video_list_item_root"
+        style="@style/video_item_card_root"
+        android:background="@drawable/bg_modern_card_focus"
+        android:elevation="2dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <ImageView
+            android:id="@+id/video_list_item_iv_image"
+            style="@style/video_item_card_image" />
+
+        <TextView
+            android:id="@+id/video_list_item_tv_title"
+            style="@style/video_item_card_text" />
+
+        <ImageView
+            android:id="@+id/video_list_item_iv_icon"
+            style="@style/video_item_card_play_icon" />
+
+        <TextView
+            android:id="@+id/video_list_item_tv_remarks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/bg_remarks_badge"
+            android:textColor="@android:color/white"
+            android:textSize="8sp"
+            android:singleLine="true"
+            android:visibility="gone"
+            android:maxWidth="@dimen/x60"
+            android:ellipsize="end" />
+    </RelativeLayout>
+</RelativeLayout>

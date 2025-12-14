@@ -1,0 +1,753 @@
+package com.pxf.fftv.plus.player;
+
+import androidx.annotation.OptIn;
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.appcompat.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.media3.common.C;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.common.util.Util;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.okhttp.OkHttpDataSource;
+import androidx.media3.exoplayer.DefaultLoadControl;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.hls.DefaultHlsExtractorFactory;
+import androidx.media3.exoplayer.hls.HlsMediaSource;
+import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.source.ProgressiveMediaSource;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.ui.PlayerView;
+
+import com.pxf.fftv.plus.common.CommonUtils;
+import com.pxf.fftv.plus.Const;
+import com.pxf.fftv.plus.R;
+import com.pxf.fftv.plus.common.InternalFileSaveUtil;
+import com.pxf.fftv.plus.common.ModernDialog;
+import com.pxf.fftv.plus.contract.history.VideoHistory;
+import com.pxf.fftv.plus.model.Model;
+import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+
+import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+import static androidx.media3.common.C.TRACK_TYPE_AUDIO;
+
+@UnstableApi
+public class EXOPlayerActivity extends AppCompatActivity {
+
+    TextView video_time;
+
+    PlayerView player_view;
+
+    TextView titleView;
+
+    TextView messageView;
+
+    View menuRoot;
+
+    SeekBar seekbar;
+
+    TextView loadingText;
+
+    View loadingViewRoot;
+
+    View exo_player_iv_switch_track;
+
+    View btnNextEpisode;
+
+    View btnPrevEpisode;
+
+    View btnSkipBack;
+
+    View btnSkipForward;
+    View btnTogglePlay;
+    View btnSwitchPlayer;
+
+    private String videoUrl;
+    private String title;
+    private String subTitle;
+    private String picUrl;
+    private int currentPartPosition;
+    private int lastPosition;
+
+    private Dialog mProgressDialog;
+    private Timer mProgressTimer;
+    private Timer mMenuTimer;
+    private Timer mTimer = new Timer();
+
+    // 标记视频是否已经开始播放
+    private boolean isPrepare = false;
+    private int videoDuration = 0;
+    private int targetPosition = -1;
+
+    // 用于记录历史
+    private int videoCurrentPosition = 0;
+    private int videoId;
+
+    private boolean isSave = false;
+
+    private ExoPlayer mPlayer;
+    private DefaultTrackSelector mTrackSelector;
+    private DefaultRenderersFactory mRenderFactory;
+    private int currentAudioTrack = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exo_player);
+
+        video_time = findViewById(R.id.video_time);
+        player_view = findViewById(R.id.player_view);
+        titleView = findViewById(R.id.title);
+        messageView = findViewById(R.id.message);
+        menuRoot = findViewById(R.id.menu);
+        seekbar = findViewById(R.id.seekbar);
+        loadingText = findViewById(R.id.loading_text);
+        loadingViewRoot = findViewById(R.id.loading_view_root);
+        exo_player_iv_switch_track = findViewById(R.id.exo_player_iv_switch_track);
+        btnNextEpisode = findViewById(R.id.btn_next_episode);
+        btnPrevEpisode = findViewById(R.id.btn_prev_episode);
+        btnSkipBack = findViewById(R.id.btn_skip_back);
+        btnSkipForward = findViewById(R.id.btn_skip_forward);
+        btnTogglePlay = findViewById(R.id.btn_toggle_play);
+        btnSwitchPlayer = findViewById(R.id.btn_switch_player);
+
+        findViewById(R.id.overlay_touch_view).setOnClickListener(v -> toggleMenu());
+
+        btnTogglePlay.setOnClickListener(v -> onTogglePlayClick());
+        btnSwitchPlayer.setOnClickListener(v -> showSwitchPlayerDialog());
+
+        exo_player_iv_switch_track.setOnClickListener(v -> onSwitchTrackClick());
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
+
+        // exo_player_iv_switch_track is now hidden - using btn_switch_player in control
+        // row instead
+        exo_player_iv_switch_track.setVisibility(View.GONE);
+
+        videoUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_URL);
+        if (videoUrl != null) {
+            Log.d("EXOPlayer", videoUrl);
+        }
+        Toast.makeText(EXOPlayerActivity.this, "EXOPlayer", Toast.LENGTH_SHORT).show();
+        title = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_TITLE);
+        subTitle = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_SUB_TITLE);
+        picUrl = getIntent().getStringExtra(VideoPlayer.KEY_VIDEO_PIC);
+        currentPartPosition = getIntent().getIntExtra(VideoPlayer.KEY_VIDEO_CURRENT_PART, -1);
+        lastPosition = getIntent().getIntExtra(VideoPlayer.KEY_VIDEO_LAST_POSITION, -1);
+        videoId = getIntent().getIntExtra(VideoPlayer.KEY_VIDEO_ID, 0);
+
+        titleView.setText(title);
+        messageView.setText(subTitle);
+        loadingText.setText("准备播放 <<" + title + ">> " + subTitle + "...");
+
+        mTrackSelector = new DefaultTrackSelector(this);
+        mRenderFactory = new DefaultRenderersFactory(this);
+        mRenderFactory.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER);
+
+        // Configure custom buffering to reduce resume lag
+        DefaultLoadControl loadControl = new DefaultLoadControl.Builder()
+                .setBufferDurationsMs(
+                        15000, // minBufferMs: 15 seconds
+                        50000, // maxBufferMs: 50 seconds
+                        1500, // bufferForPlaybackMs: 1.5 seconds start buffer
+                        2000 // bufferForPlaybackAfterRebufferMs: 2 seconds resume buffer (reduced from
+                             // default ~5s)
+                )
+                .build();
+
+        mPlayer = new ExoPlayer.Builder(this, mRenderFactory)
+                .setTrackSelector(mTrackSelector)
+                .setLoadControl(loadControl)
+                .build();
+        player_view.setPlayer(mPlayer);
+
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_progress, null, false);
+        mProgressDialog = new AlertDialog.Builder(this, R.style.ModernAlertDialog).setView(view).setCancelable(false)
+                .create();
+        mProgressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    ImageView icon = mProgressDialog.findViewById(R.id.dialog_progress_icon);
+                    TextView text = mProgressDialog.findViewById(R.id.dialog_progress_time);
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            if (!isPrepare) {
+                                return false;
+                            }
+                            // 快退
+                            if (targetPosition == -1) {
+                                targetPosition = (int) (mPlayer.getCurrentPosition()) / 1000 - videoDuration / 100;
+                            } else {
+                                targetPosition = targetPosition - videoDuration / 100;
+                            }
+                            // 最小不小于0
+                            if (targetPosition < 0) {
+                                targetPosition = 0;
+                            }
+
+                            if (targetPosition < (int) (mPlayer.getCurrentPosition()) / 1000) {
+                                icon.setImageResource(R.drawable.video_back);
+                                text.setText("快退至 " + formatTime(targetPosition));
+                            } else {
+                                icon.setImageResource(R.drawable.video_forward);
+                                text.setText("快进至 " + formatTime(targetPosition));
+                            }
+                            startProgressTimer();
+                            return true;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            if (!isPrepare) {
+                                return false;
+                            }
+                            // 快进
+                            if (targetPosition == -1) {
+                                targetPosition = (int) (mPlayer.getCurrentPosition()) / 1000 + videoDuration / 100;
+                            } else {
+                                targetPosition = targetPosition + videoDuration / 100;
+                            }
+                            // 最大不超过最终时间-3秒
+                            if (targetPosition >= videoDuration - 3) {
+                                targetPosition = videoDuration - 3;
+                            }
+
+                            if (targetPosition < (int) (mPlayer.getCurrentPosition()) / 1000) {
+                                icon.setImageResource(R.drawable.video_back);
+                                text.setText("快退至 " + formatTime(targetPosition));
+                            } else {
+                                icon.setImageResource(R.drawable.video_forward);
+                                text.setText("快进至 " + formatTime(targetPosition));
+                            }
+                            startProgressTimer();
+                            return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        mPlayer.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int playbackState) {
+                if (playbackState == Player.STATE_READY && loadingViewRoot.getVisibility() == View.VISIBLE) {
+                    // 准备开始播放
+                    isPrepare = true;
+                    loadingViewRoot.setVisibility(View.GONE);
+                    seekbar.setMax((int) (mPlayer.getDuration()) / 1000);
+                    videoDuration = (int) (mPlayer.getDuration()) / 1000;
+                    mTimer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (!isFinishing()) {
+                                        videoCurrentPosition = (int) (mPlayer.getCurrentPosition()) / 1000;
+                                        seekbar.setProgress((int) (mPlayer.getCurrentPosition()) / 1000);
+                                        seekbar.setSecondaryProgress((int) mPlayer.getBufferedPosition());
+                                        video_time.setText(
+                                                formatTime((int) (mPlayer.getCurrentPosition()) / 1000) + " / "
+                                                        + formatTime((int) (mPlayer.getDuration()) / 1000));
+                                    }
+
+                                }
+                            });
+                        }
+                    }, 0, 1000);
+
+                    mPlayer.setPlayWhenReady(true);
+                    updatePlayPauseButton();
+
+                    if (lastPosition > 0) {
+                        Toast.makeText(EXOPlayerActivity.this, "正在跳转至历史播放位置", Toast.LENGTH_LONG).show();
+                        mPlayer.seekTo(lastPosition * 1000);
+                    }
+                }
+                if (playbackState == Player.STATE_ENDED) {
+                    // 播放下一集
+                    if (currentPartPosition != -1) {
+                        Toast.makeText(EXOPlayerActivity.this, "即将自动播放下一集", Toast.LENGTH_SHORT).show();
+                        EventBus.getDefault().postSticky(new AutoNextEvent(currentPartPosition));
+                        Observable.empty().delay(3000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread())
+                                .doOnComplete(new Action() {
+                                    @Override
+                                    public void run() throws Exception {
+                                        finish();
+                                    }
+                                }).subscribe();
+                    }
+                }
+            }
+        });
+
+        player_view.setUseController(false);
+        MediaSource videoSource;
+
+        DataSource.Factory dataSourceFactory = new OkHttpDataSource.Factory(CommonUtils.getOkHttpClient())
+                .setUserAgent(Util.getUserAgent(this, "smtvplus"));
+        DefaultHlsExtractorFactory defaultHlsExtractorFactory = new DefaultHlsExtractorFactory();
+        if (videoUrl.endsWith("m3u8")) {
+            videoSource = new HlsMediaSource.Factory(dataSourceFactory).setExtractorFactory(defaultHlsExtractorFactory)
+                    .createMediaSource(MediaItem.fromUri(Uri.parse(videoUrl)));
+        } else {
+            videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
+                    .createMediaSource(MediaItem.fromUri(Uri.parse(videoUrl)));
+        }
+
+        mPlayer.setMediaSource(videoSource);
+        mPlayer.prepare();
+
+        // Show/hide episode navigation buttons
+        if (currentPartPosition != -1) {
+            btnNextEpisode.setVisibility(View.VISIBLE);
+            btnPrevEpisode.setVisibility(View.VISIBLE);
+        } else {
+            btnNextEpisode.setVisibility(View.GONE);
+            btnPrevEpisode.setVisibility(View.GONE);
+        }
+
+        // Set button click listeners
+        btnSkipBack.setOnClickListener(v -> onSkipBackClick());
+        btnSkipForward.setOnClickListener(v -> onSkipForwardClick());
+        btnPrevEpisode.setOnClickListener(v -> onPrevEpisodeClick());
+        btnNextEpisode.setOnClickListener(v -> onNextEpisodeClick());
+
+        // Add click listener to toggle menu on tap (for phone users)
+        player_view.setOnClickListener(v -> toggleMenu());
+    }
+
+    private void toggleMenu() {
+        if (menuRoot.getVisibility() == View.GONE) {
+            menuRoot.setVisibility(View.VISIBLE);
+            mMenuTimer = new Timer();
+            mMenuTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!isFinishing()) {
+                                menuRoot.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+                }
+            }, 5000);
+            updatePlayPauseButton();
+        } else {
+            menuRoot.setVisibility(View.GONE);
+            if (mMenuTimer != null) {
+                mMenuTimer.cancel();
+                mMenuTimer.purge();
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                toggleMenu();
+                return true;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (menuRoot.getVisibility() == View.GONE) {
+                    toggleMenu();
+                    return true;
+                } else {
+                    return false;
+                }
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (!isPrepare) {
+                    return false;
+                }
+                if (menuRoot.getVisibility() == View.GONE) {
+                    toggleMenu();
+                    if (btnTogglePlay != null) {
+                        btnTogglePlay.requestFocus();
+                    }
+                    return true;
+                } else {
+                    // Force focus to buttons if menu is visible but focus is lost/stuck
+                    if (btnTogglePlay != null && !btnTogglePlay.hasFocus() &&
+                            !btnNextEpisode.hasFocus() && !btnPrevEpisode.hasFocus() &&
+                            !btnSkipBack.hasFocus() && !btnSkipForward.hasFocus() &&
+                            !exo_player_iv_switch_track.hasFocus()) {
+
+                        btnTogglePlay.requestFocus();
+                        return true;
+                    }
+                    return false;
+                }
+            case KeyEvent.KEYCODE_ENTER:
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+            case KeyEvent.KEYCODE_SPACE:
+                if (menuRoot.getVisibility() == View.VISIBLE) {
+                    return false;
+                }
+                if (!isPrepare) {
+                    return false;
+                }
+                if (mPlayer.isPlaying()) {
+                    mPlayer.setPlayWhenReady(false);
+                } else {
+                    mPlayer.setPlayWhenReady(true);
+                }
+                updatePlayPauseButton();
+                return true;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+            case KeyEvent.KEYCODE_META_LEFT:
+            case KeyEvent.KEYCODE_CTRL_LEFT:
+                if (!isPrepare) {
+                    return false;
+                }
+                if (menuRoot.getVisibility() == View.VISIBLE) {
+                    return super.onKeyDown(keyCode, event);
+                }
+
+                // 快退
+                if (targetPosition == -1) {
+                    targetPosition = (int) (mPlayer.getCurrentPosition() / 1000) - videoDuration / 100;
+                } else {
+                    targetPosition = targetPosition - videoDuration / 100;
+                }
+                // 最小不小于0
+                if (targetPosition < 0) {
+                    targetPosition = 0;
+                }
+
+                if (!mProgressDialog.isShowing()) {
+                    mProgressDialog.show();
+                    Window dialogWindow = mProgressDialog.getWindow();
+                    dialogWindow.setBackgroundDrawableResource(android.R.color.transparent);
+                }
+
+                ImageView icon = mProgressDialog.findViewById(R.id.dialog_progress_icon);
+                TextView text = mProgressDialog.findViewById(R.id.dialog_progress_time);
+                if (targetPosition < (int) (mPlayer.getCurrentPosition() / 1000)) {
+                    icon.setImageResource(R.drawable.video_back);
+                    text.setText("快退至 " + formatTime(targetPosition));
+                } else {
+                    icon.setImageResource(R.drawable.video_forward);
+                    text.setText("快进至 " + formatTime(targetPosition));
+                }
+                startProgressTimer();
+                return true;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+            case KeyEvent.KEYCODE_CTRL_RIGHT:
+            case KeyEvent.KEYCODE_META_RIGHT:
+                if (!isPrepare) {
+                    return false;
+                }
+                if (menuRoot.getVisibility() == View.VISIBLE) {
+                    return super.onKeyDown(keyCode, event);
+                }
+                // 快进
+
+                if (targetPosition == -1) {
+                    targetPosition = (int) (mPlayer.getCurrentPosition() / 1000) + videoDuration / 100;
+                } else {
+                    targetPosition = targetPosition + videoDuration / 100;
+                }
+
+                // 最大不超过最终时间-3秒
+                if (targetPosition >= videoDuration - 3) {
+                    targetPosition = videoDuration - 3;
+                }
+
+                if (mProgressDialog != null) {
+                    mProgressDialog.dismiss();
+                }
+
+                if (!mProgressDialog.isShowing()) {
+                    mProgressDialog.show();
+                    Window dialogWindow2 = mProgressDialog.getWindow();
+                    dialogWindow2.setBackgroundDrawableResource(android.R.color.transparent);
+                }
+
+                icon = mProgressDialog.findViewById(R.id.dialog_progress_icon);
+                text = mProgressDialog.findViewById(R.id.dialog_progress_time);
+
+                if (targetPosition < (int) (mPlayer.getCurrentPosition() / 1000)) {
+                    icon.setImageResource(R.drawable.video_back);
+                    text.setText("快退至 " + formatTime(targetPosition));
+                } else {
+                    icon.setImageResource(R.drawable.video_forward);
+                    text.setText("快进至 " + formatTime(targetPosition));
+                }
+                startProgressTimer();
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    private void startProgressTimer() {
+        if (mProgressTimer != null) {
+            mProgressTimer.cancel();
+            mProgressTimer.purge();
+        }
+        mProgressTimer = new Timer();
+        mProgressTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressDialog.dismiss();
+                        mPlayer.seekTo(targetPosition * 1000);
+                        targetPosition = -1;
+                    }
+                });
+            }
+        }, 1000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ModernDialog.showConfirm(this, "是否确认退出？",
+                () -> {
+                    saveHistory();
+                    isSave = true;
+                    finish();
+                },
+                () -> {
+                });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+        // Resume player when returning from background
+        if (mPlayer != null && !mPlayer.isPlaying() && isPrepare) {
+            mPlayer.play();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+        // Pause player when going to background to prevent destruction
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        saveHistory();
+    }
+
+    private void saveHistory() {
+        if (isSave) {
+            return;
+        }
+
+        // 保存历史
+        VideoHistory videoHistory = new VideoHistory();
+
+        // 历史最后只到视频99%
+        if (videoCurrentPosition > (int) (videoDuration * 0.99)) {
+            videoHistory.setLastPosition((int) (videoDuration * 0.99));
+        } else {
+            videoHistory.setLastPosition(videoCurrentPosition);
+        }
+        videoHistory.setTitle(title);
+        videoHistory.setSubTitle(subTitle);
+        videoHistory.setUrl(videoUrl);
+        videoHistory.setDuration(videoDuration);
+        videoHistory.setPicUrl(picUrl);
+        videoHistory.setId(videoId);
+
+        android.util.Log.d("SaveHistory",
+                "TV: Saving history: title=" + title + ", url=" + videoUrl + ", id=" + videoId);
+
+        LinkedList<VideoHistory> historyList = (LinkedList<VideoHistory>) InternalFileSaveUtil.getInstance(this)
+                .get("video_history");
+        if (historyList == null) {
+            historyList = new LinkedList<>();
+            android.util.Log.d("SaveHistory", "TV: Created new history list");
+        } else {
+            android.util.Log.d("SaveHistory", "TV: Loaded existing history list with " + historyList.size() + " items");
+        }
+        historyList.add(0, videoHistory);
+        // 同名视频只添加去除之前的历史
+        if (historyList.size() > 1) {
+            for (int i = 1; i < historyList.size(); i++) {
+                if (historyList.get(i).getTitle().equals(title)) {
+                    historyList.remove(i);
+                    break;
+                }
+            }
+        }
+        if (historyList.size() > Const.VIDEO_HISTORY_NUM) {
+            historyList.remove(historyList.size() - 1);
+        }
+        boolean saved = InternalFileSaveUtil.getInstance(this).put("video_history", historyList);
+        android.util.Log.d("SaveHistory", "TV: History saved: " + saved + ", total items: " + historyList.size());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer.purge();
+        }
+        if (mMenuTimer != null) {
+            mMenuTimer.cancel();
+            mMenuTimer.purge();
+        }
+        if (mProgressTimer != null) {
+            mProgressTimer.cancel();
+            mProgressTimer.purge();
+        }
+        if (mPlayer != null) {
+            mPlayer.release();
+        }
+    }
+
+    private String formatTime(int time) {
+        String result = "";
+        int h = time / 3600;
+        int m = (time % 3600) / 60;
+        int s = time % 60;
+        if (h > 0) {
+            result = h + ":";
+        }
+        if (m < 10) {
+            result = result + "0" + m + ":";
+        } else {
+            result = result + m + ":";
+        }
+        if (s < 10) {
+            result = result + "0" + s;
+        } else {
+            result = result + s;
+        }
+        return result;
+    }
+
+    private void onSkipBackClick() {
+        if (mPlayer != null && isPrepare) {
+            long targetPos = mPlayer.getCurrentPosition() - 10000;
+            if (targetPos < 0)
+                targetPos = 0;
+            mPlayer.seekTo(targetPos);
+            Toast.makeText(this, "-10s", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void onSkipForwardClick() {
+        if (mPlayer != null && isPrepare) {
+            long targetPos = mPlayer.getCurrentPosition() + 10000;
+            if (targetPos >= mPlayer.getDuration())
+                targetPos = mPlayer.getDuration() - 3000;
+            mPlayer.seekTo(targetPos);
+            Toast.makeText(this, "+10s", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void onPrevEpisodeClick() {
+        if (currentPartPosition > 0) {
+            Toast.makeText(this, "播放上一集", Toast.LENGTH_SHORT).show();
+            EventBus.getDefault().postSticky(new AutoNextEvent(currentPartPosition - 2));
+            finish();
+        } else {
+            Toast.makeText(this, "已经是第一集了", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void onNextEpisodeClick() {
+        if (currentPartPosition != -1) {
+            Toast.makeText(this, "播放下一集", Toast.LENGTH_SHORT).show();
+            EventBus.getDefault().postSticky(new AutoNextEvent(currentPartPosition));
+            finish();
+        }
+    }
+
+    public void onSwitchTrackClick() {
+        // Simplified track switching for Media3
+        Toast.makeText(this, "音轨切换", Toast.LENGTH_LONG).show();
+    }
+
+    private void onTogglePlayClick() {
+        if (mPlayer == null)
+            return;
+        if (mPlayer.isPlaying()) {
+            mPlayer.setPlayWhenReady(false);
+        } else {
+            mPlayer.setPlayWhenReady(true);
+        }
+        updatePlayPauseButton();
+    }
+
+    private void updatePlayPauseButton() {
+        if (btnTogglePlay == null || mPlayer == null)
+            return;
+        if (mPlayer.isPlaying()) {
+            ((android.widget.ImageView) btnTogglePlay).setImageResource(android.R.drawable.ic_media_pause);
+        } else {
+            ((android.widget.ImageView) btnTogglePlay).setImageResource(android.R.drawable.ic_media_play);
+        }
+    }
+
+    private void showSwitchPlayerDialog() {
+        final String[] items = { "原生播放器", "IJK播放器", "EXO播放器" };
+        final String[] engines = { Const.PLAY_1, Const.PLAY_3, Const.PLAY_4 };
+
+        ModernDialog.showList(this, "选择播放器", items, position -> {
+            Model.getData().setPlayerEngine(EXOPlayerActivity.this, engines[position]);
+            Toast.makeText(EXOPlayerActivity.this, "已切换为 " + items[position], Toast.LENGTH_SHORT).show();
+
+            // Restart playback with new engine
+            if (mPlayer != null) {
+                mPlayer.stop();
+                mPlayer.release();
+                mPlayer = null;
+            }
+
+            IVideoPlayer player = VideoPlayer.getVideoPlayer(EXOPlayerActivity.this);
+            player.play(EXOPlayerActivity.this, videoUrl, title, subTitle, currentPartPosition, picUrl,
+                    lastPosition, videoId);
+            finish();
+        });
+    }
+}

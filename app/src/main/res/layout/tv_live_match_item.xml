@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_top_menu_selector"
+    android:padding="@dimen/x8"
+    android:layout_marginBottom="@dimen/x6"
+    android:focusable="true"
+    android:clickable="true"
+    android:gravity="center_vertical">
+
+    <!-- Home Team -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_home_logo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_home_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x2"
+            android:textColor="@color/modernTextPrimary"
+            android:textSize="@dimen/x8"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- VS separator -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vs"
+        android:textColor="@color/modernTextSecondary"
+        android:textSize="@dimen/x7"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_marginRight="@dimen/x4" />
+
+    <!-- Away Team -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_away_logo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_away_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x2"
+            android:textColor="@color/modernTextPrimary"
+            android:textSize="@dimen/x8"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- Match Time -->
+    <TextView
+        android:id="@+id/tv_match_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:textColor="@color/modernTextSecondary"
+        android:textSize="@dimen/x6"
+        android:gravity="center" />
+</LinearLayout>

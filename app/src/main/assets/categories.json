@@ -1,0 +1,183 @@
+{
+    "l1_categories": [
+        {
+            "id": 1,
+            "name": "电影",
+            "subcategories": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                20,
+                42
+            ]
+        },
+        {
+            "id": 2,
+            "name": "连续剧",
+            "subcategories": [
+                15,
+                18,
+                21,
+                22,
+                36
+            ]
+        },
+        {
+            "id": 3,
+            "name": "综艺",
+            "subcategories": [
+                24,
+                25,
+                26
+            ]
+        },
+        {
+            "id": 4,
+            "name": "动漫",
+            "subcategories": [
+                28,
+                29,
+                30
+            ]
+        },
+        {
+            "id": 5,
+            "name": "资讯",
+            "subcategories": []
+        },
+        {
+            "id": 6,
+            "name": "短剧",
+            "subcategories": []
+        },
+        {
+            "id": 7,
+            "name": "体育赛事",
+            "subcategories": [
+                37,
+                40
+            ]
+        },
+        {
+            "id": 44,
+            "name": "演唱会",
+            "subcategories": []
+        }
+    ],
+    "l2_categories": [
+        {
+            "id": 8,
+            "name": "动作片",
+            "parent": 1
+        },
+        {
+            "id": 9,
+            "name": "喜剧片",
+            "parent": 1
+        },
+        {
+            "id": 10,
+            "name": "爱情片",
+            "parent": 1
+        },
+        {
+            "id": 11,
+            "name": "科幻片",
+            "parent": 1
+        },
+        {
+            "id": 12,
+            "name": "恐怖片",
+            "parent": 1
+        },
+        {
+            "id": 13,
+            "name": "剧情片",
+            "parent": 1
+        },
+        {
+            "id": 14,
+            "name": "战争片",
+            "parent": 1
+        },
+        {
+            "id": 20,
+            "name": "纪录片",
+            "parent": 1
+        },
+        {
+            "id": 42,
+            "name": "Netflix电影",
+            "parent": 1
+        },
+        {
+            "id": 15,
+            "name": "国产剧",
+            "parent": 2
+        },
+        {
+            "id": 18,
+            "name": "美国剧",
+            "parent": 2
+        },
+        {
+            "id": 21,
+            "name": "韩国剧",
+            "parent": 2
+        },
+        {
+            "id": 22,
+            "name": "日本剧",
+            "parent": 2
+        },
+        {
+            "id": 36,
+            "name": "泰剧",
+            "parent": 2
+        },
+        {
+            "id": 24,
+            "name": "大陆综艺",
+            "parent": 3
+        },
+        {
+            "id": 25,
+            "name": "日韩综艺",
+            "parent": 3
+        },
+        {
+            "id": 26,
+            "name": "港台综艺",
+            "parent": 3
+        },
+        {
+            "id": 28,
+            "name": "国产动漫",
+            "parent": 4
+        },
+        {
+            "id": 29,
+            "name": "日韩动漫",
+            "parent": 4
+        },
+        {
+            "id": 30,
+            "name": "欧美动漫",
+            "parent": 4
+        },
+        {
+            "id": 37,
+            "name": "篮球",
+            "parent": 7
+        },
+        {
+            "id": 40,
+            "name": "足球",
+            "parent": 7
+        }
+    ]
+}

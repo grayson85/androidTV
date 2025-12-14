@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@drawable/bg_modern_card_focus"
+    android:focusable="true"
+    android:layout_marginTop="@dimen/x8"
+    android:layout_marginBottom="@dimen/x8"
+    android:padding="@dimen/x12"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/search_item_iv_pic"
+        android:layout_width="@dimen/x96"
+        android:layout_height="@dimen/x140"
+        android:background="#22000000" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/search_item_tv_name"
+            android:textSize="@dimen/x18"
+            android:textStyle="bold"
+            android:textColor="@color/modernTextPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x8" />
+
+        <TextView
+            android:id="@+id/search_item_tv_director"
+            style="@style/search_item_text"
+            android:textColor="@color/modernTextSecondary" />
+
+        <TextView
+            android:id="@+id/search_item_tv_actor"
+            style="@style/search_item_text"
+            android:textColor="@color/modernTextSecondary" />
+
+        <TextView
+            android:id="@+id/search_item_tv_area"
+            style="@style/search_item_text"
+            android:textColor="@color/modernTextSecondary" />
+
+        <TextView
+            android:id="@+id/search_item_tv_year"
+            style="@style/search_item_text"
+            android:textColor="@color/modernTextSecondary" />
+
+        <TextView
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:id="@+id/search_item_tv_content"
+            style="@style/search_item_text"
+            android:textColor="@color/modernTextSecondary"
+            android:layout_marginTop="@dimen/x4" />
+
+    </LinearLayout>
+</LinearLayout>

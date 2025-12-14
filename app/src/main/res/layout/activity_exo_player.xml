@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Overlay to capture clicks for toggling menu -->
+    <View
+        android:id="@+id/overlay_touch_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="false" />
+
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/x24"
+        android:background="@drawable/bg_player_panel"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/x24"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生日信"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x36" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="第1集"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/x12" />
+
+            <!-- Hidden - using btn_switch_player in control buttons instead -->
+            <ImageView
+                android:id="@+id/exo_player_iv_switch_track"
+                android:layout_width="@dimen/x24"
+                android:layout_height="@dimen/x18"
+                android:layout_marginLeft="@dimen/x24"
+                android:visibility="gone"
+                android:src="@drawable/ic_switch_track_normal" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x12"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:maxHeight="@dimen/x4"
+            android:min="0"
+            android:minHeight="@dimen/x4"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progressDrawable="@drawable/video_seekbar_progress"
+            android:thumb="@drawable/video_seekbar_thumb"
+            android:thumbOffset="0dp" />
+
+        <TextView
+            android:id="@+id/video_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="00:00 / 00:00"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/x8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_prev_episode"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="上一集"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_previous"
+                app:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/btn_skip_back"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="-10s"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_rew"
+                app:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/btn_toggle_play"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="Play/Pause"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_pause"
+                app:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/btn_skip_forward"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="+10s"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_ff"
+                app:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/btn_next_episode"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="下一集"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_next"
+                app:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/btn_switch_player"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="@dimen/x8"
+                android:background="@drawable/bg_player_icon_menu"
+                android:contentDescription="切源"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_menu_rotate"
+                app:tint="@color/colorWhite" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_view_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1A1A2E">
+
+        <com.mingle.widget.LoadingView
+            android:id="@+id/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/x80"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/x20" />
+    </RelativeLayout>
+
+</RelativeLayout>

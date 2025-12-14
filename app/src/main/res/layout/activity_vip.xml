@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_vip_activity"
+    android:orientation="vertical"
+    tools:context=".contract.VipActivity">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/x24"
+        android:paddingTop="@dimen/x12"
+        android:paddingRight="@dimen/x24"
+        android:paddingBottom="@dimen/x12">
+
+        <TextView
+            android:id="@+id/vip_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您的账号将于 2019-02-18 到期，请及时续费"
+            android:textColor="#685640"
+            android:textSize="@dimen/x16"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/x24"
+            android:background="@drawable/bg_vip_menu_normal"
+            android:id="@+id/vip_root_card"
+            android:paddingLeft="@dimen/x16"
+            android:paddingRight="@dimen/x16"
+            style="@style/top_bar_menu">
+
+            <ImageView
+                android:id="@+id/vip_iv_card"
+                style="@style/common_menu_icon"
+                android:src="@drawable/ic_vip_normal" />
+
+            <TextView
+                android:textColor="@color/colorVipTextNormal"
+                android:id="@+id/vip_tv_card"
+                style="@style/common_menu_text"
+                android:text="使用卡密" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/vip_root_day"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_day_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP天卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_day_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_day_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_day_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/vip_root_week"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_week_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP周卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_week_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_week_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_week_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/vip_root_month"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_month_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP月卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_month_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_month_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_month_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x24"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/vip_root_season"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_season_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP季卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_season_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_season_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_season_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/vip_root_year"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_year_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP年卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_year_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_year_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_year_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/vip_root_ever"
+                style="@style/vip_item_root">
+
+                <TextView
+                    android:id="@+id/vip_tv_ever_title"
+                    style="@style/vip_item_title"
+                    android:text="VIP永久卡" />
+
+                <TextView
+                    android:id="@+id/vip_tv_ever_message"
+                    style="@style/vip_item_message"
+                    android:layout_below="@id/vip_tv_ever_title"
+                    android:text="加载中..." />
+
+                <TextView
+                    android:id="@+id/vip_tv_ever_price"
+                    style="@style/vip_item_price"
+                    android:text="加载中..." />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5D4C37"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x24"
+        android:paddingTop="@dimen/x4"
+        android:paddingRight="@dimen/x24"
+        android:paddingBottom="@dimen/x4">
+
+        <TextView
+            style="@style/vip_bottom_text"
+            android:layout_marginRight="@dimen/x16"
+            android:text="加入VIP会员，免费观看所有视频" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/x16"
+            android:background="@color/vipTextColor" />
+
+        <TextView
+            style="@style/vip_bottom_text"
+            android:layout_marginRight="@dimen/x16"
+            android:text="热剧抢先" />
+
+        <TextView
+            style="@style/vip_bottom_text"
+            android:layout_marginRight="@dimen/x16"
+            android:text="广告特权" />
+
+        <TextView
+            style="@style/vip_bottom_text"
+            android:layout_marginRight="@dimen/x16"
+            android:text="4K高清" />
+    </LinearLayout>
+
+</LinearLayout>

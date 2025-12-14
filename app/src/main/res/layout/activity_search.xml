@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_dark"
+    android:padding="@dimen/x24">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x56"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/x16">
+
+        <EditText
+            android:id="@+id/search_et_input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg_input"
+            android:focusable="true"
+            android:paddingLeft="@dimen/x24"
+            android:paddingRight="@dimen/x24"
+            android:singleLine="true"
+            android:hint="输入影片名称首字母搜索"
+            android:textColorHint="@color/modernTextSecondary"
+            android:textColor="@color/modernTextPrimary"
+            android:textSize="@dimen/x20" />
+
+        <ImageView
+            android:id="@+id/search_iv_search"
+            android:layout_width="@dimen/x48"
+            android:layout_height="@dimen/x48"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_marginRight="@dimen/x8"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="@dimen/x8"
+            android:background="@drawable/bg_modern_button"
+            android:src="@drawable/search_ic_search_default"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recycler_view_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/x8"
+        android:paddingBottom="@dimen/x8"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/search_tv_no_result"
+        android:layout_marginTop="@dimen/x32"
+        android:text="搜索不到结果"
+        android:textColor="@color/modernTextSecondary"
+        android:textSize="@dimen/x20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

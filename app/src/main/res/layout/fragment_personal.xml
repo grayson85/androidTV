@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".contract.personal.PersonalFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/personal_root_account"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_account_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="账号" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_root_video_screen"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_video_screen_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="视频筛选" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_root_setting"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_setting_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="设置" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_root_collection"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_collection_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="我的收藏" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personal_root_history"
+            style="@style/personal_menu_item_root"
+            android:layout_marginRight="@dimen/x24">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_history_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="历史播放" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/personal_root_vip"
+            android:visibility="invisible"
+            style="@style/personal_menu_item_root"
+            android:background="@drawable/bg_personal_menu_vip_item">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_vip_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="开通VIP"
+                android:textColor="@color/colorVipTextNormal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/personal_root_download"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                android:padding="@dimen/x2"
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_download_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="本地缓存" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/personal_root_app"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_app_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="手机APP" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/personal_root_website"
+            style="@style/personal_menu_item_root">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_website_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="官网" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/personal_root_protocol"
+            style="@style/personal_menu_item_root"
+            android:layout_marginRight="@dimen/x24">
+
+            <ImageView
+                style="@style/personal_menu_item_icon"
+                android:src="@drawable/ic_personal_protocol_normal" />
+
+            <TextView
+                style="@style/personal_menu_item_text"
+                android:text="用户协议" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

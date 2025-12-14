@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/video_item_root"
+    android:layout_width="@dimen/x96"
+    android:layout_height="@dimen/x140">
+
+    <RelativeLayout
+        android:id="@+id/video_collect_card_root"
+        style="@style/video_item_card_root">
+
+        <ImageView
+            android:id="@+id/video_collect_card_image"
+            style="@style/video_item_card_image" />
+
+        <TextView
+            android:id="@+id/video_collect_card_text"
+            style="@style/video_item_card_text" />
+
+        <ImageView
+            style="@style/video_item_card_rank"
+            android:src="@drawable/ranking_1"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/video_item_card_tag"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</RelativeLayout>
